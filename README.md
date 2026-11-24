@@ -171,6 +171,7 @@ and surrogate pairs, long words, symbols, deep nesting), 647,517 parts and 424,7
 | CPU (`tests/golden.rs`, Linux, macOS, Windows) | **0** | **0** | **0** of 424,788 |
 | GPU, lavapipe, f32 storage (`tests/gpu.rs`) | 1 | 14 | 3 of 424,643 (0.0007%) |
 | GPU, lavapipe, f16 storage | 14 | 201 | 25 of 424,643 (0.006%) |
+| GPU, macOS runner's Metal (Apple Paravirtual device), f16 | 17 | 321 | 31 of 424,643 (0.007%) |
 
 The CPU backend computes as the reference does: every activation rounded to `f32` where the reference stores it in
 a `Float32Array`, every sum accumulated in `f64` in the reference's order, and `exp` / `tanh` from fdlibm as V8
@@ -214,7 +215,7 @@ of three.min.js on an Apple M4 Pro.
 - `cargo build --features gpu` for `aarch64-linux-android`, `aarch64-apple-ios` and `aarch64-apple-ios-sim`;
 - wasm32 builds: CPU only, the NSH module, and `web-gpu`;
 - GPU parity on Mesa lavapipe (software Vulkan) with f16 and with f32 storage, and on the macOS runner's Metal
-  device when the VM exposes one;
+  device (Apple Paravirtual device; skipped, not failed, if a VM exposes none);
 - `nsh check` and `nsh test` of `examples/playground` with NSH's nightly build (nshm `"dependencies"` are newer than the 0.6.1 release): `GpuLexer.parse` / `parseSync`, the editor
   highlighted only after `installFallback`, an editor left alone staying plain, `useGpuLexerDecorations`, and
   `renderLexedCodeBlock`, checked through the colors the headless runner resolves (`app.spanStyle`);
