@@ -27,7 +27,7 @@ or, in a crate's `Cargo.toml`:
 nsh-gpu-lexer = { git = "https://github.com/AkaraChen/nsh-gpu-lexer" }
 ```
 
-It is not on crates.io yet. It needs `nsh-core` / `nsh-base` 0.6 (NSH 0.6).
+It is not on crates.io yet. It needs `nsh-core` / `nsh-base` 0.6, and an NSH that installs nshm (`nsh add`, nsh.json `"dependencies"`): the nightly builds after 0.6.1 (`nsh update nightly`). A Rust app can depend on the crate in its `Cargo.toml` with any NSH 0.6.
 
 ## TSX
 
@@ -186,10 +186,21 @@ runtime (4 of 168,813 three.min.js spans).
 CPU backend, `cargo bench --bench throughput` on the GitHub Actions `ubuntu-24.04` runner (median, prepare +
 model + spans):
 
-<!-- BENCH -->
+Measured in [CI run 45338839369](https://github.com/AkaraChen/nsh-gpu-lexer/actions/runs/45338839369) (4 vCPUs, AMD EPYC 9V74):
+
+| Input | UTF-16 units | Parts | Spans | Median | Throughput |
+|---|---:|---:|---:|---:|---:|
+| lodash.js, first 1 KB | 1,000 | 397 | 242 | 2.3 ms | 0.43 MB/s |
+| lodash.js, first 10 KB | 10,000 | 4,289 | 2,114 | 18.0 ms | 0.56 MB/s |
+| lodash.js, first 100 KB | 100,000 | 40,967 | 25,428 | 166.2 ms | 0.60 MB/s |
+| three.min.js | 555,650 | 248,387 | 168,813 | 1,212 ms | 0.46 MB/s |
+| three.min.js × 10 | 5,556,500 | 2,483,870 | 1,559,126 | 12,304 ms | 0.45 MB/s |
+
+Every CI run prints the current numbers in the `CPU throughput` job's summary. On an 8-thread desktop
+(local, same build) three.min.js takes about 490 ms; single-threaded, about 2.9 s.
 
 The CPU backend is exact rather than fast: it spends its time in about 450 `f64` `exp`/`tanh` per part, which the
-parity above needs. Highlighting a typical source file (10 to 100 KB) takes tens of milliseconds, off the UI thread.
+parity above needs. Highlighting a typical source file (10 to 100 KB) takes 20 to 170 ms on CI's 4 vCPUs, off the UI thread (the editor keeps its old tokens meanwhile).
 For multi-megabyte inputs use the `gpu` feature (or `web-gpu` in browsers); upstream measured 190 ms for ten copies
 of three.min.js on an Apple M4 Pro.
 
@@ -204,7 +215,7 @@ of three.min.js on an Apple M4 Pro.
 - wasm32 builds: CPU only, the NSH module, and `web-gpu`;
 - GPU parity on Mesa lavapipe (software Vulkan) with f16 and with f32 storage, and on the macOS runner's Metal
   device when the VM exposes one;
-- `nsh check` and `nsh test` of `examples/playground` with NSH 0.6.1: `GpuLexer.parse` / `parseSync`, the editor
+- `nsh check` and `nsh test` of `examples/playground` with NSH's nightly build (nshm `"dependencies"` are newer than the 0.6.1 release): `GpuLexer.parse` / `parseSync`, the editor
   highlighted only after `installFallback`, an editor left alone staying plain, `useGpuLexerDecorations`, and
   `renderLexedCodeBlock`, checked through the colors the headless runner resolves (`app.spanStyle`);
 - that `scripts/sync-upstream.mjs` and `scripts/golden.mjs` reproduce the committed model, shader, bundle and

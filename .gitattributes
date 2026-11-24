@@ -1,0 +1,6 @@
+# Test data and generated artifacts are compared byte for byte: no line-ending conversion.
+fixtures/src/** -text linguist-vendored
+tests/golden/** -text
+model/** -text linguist-generated
+js/gpu-lexer.js -text linguist-vendored
+src/generated/** linguist-generated

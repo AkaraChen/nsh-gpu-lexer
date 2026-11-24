@@ -31,7 +31,9 @@ pub async fn parse(code: &str) -> Option<Vec<Span>> {
     let value = JsFuture::from(parse_js(code).ok()?).await.ok()?;
     let flat = Uint32Array::new(&value).to_vec();
     Some(
-        flat.chunks_exact(4)
+        flat.as_chunks::<4>()
+            .0
+            .iter()
             .map(|span| Span {
                 class: SyntaxClass::from_code(span[0] as u8),
                 start: span[1] as usize,

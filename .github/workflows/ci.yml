@@ -12,7 +12,9 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
-  NSH_VERSION: v0.6.1
+  # nshm dependencies (nsh.json "dependencies") ship in NSH's nightly builds
+  # after 0.6.1; 0.6.1 itself only knows an app's own crates.
+  NSH_ARCHIVE: https://github.com/longbridge/nsh/releases/download/nightly/nsh-linux-x86_64.tar.gz
 
 jobs:
   lint:
@@ -36,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-14, windows-2022]
+        os: [ubuntu-24.04, macos-15, windows-2022]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -61,8 +63,8 @@ jobs:
       matrix:
         include:
           - { os: ubuntu-24.04, target: aarch64-linux-android }
-          - { os: macos-14, target: aarch64-apple-ios }
-          - { os: macos-14, target: aarch64-apple-ios-sim }
+          - { os: macos-15, target: aarch64-apple-ios }
+          - { os: macos-15, target: aarch64-apple-ios-sim }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -100,7 +102,7 @@ jobs:
           - { name: lavapipe f16, os: ubuntu-24.04, env: "", require: "1" }
           - { name: lavapipe f32, os: ubuntu-24.04, env: "NSH_GPU_LEXER_NO_F16=1", require: "1" }
           # The macOS runner's Metal device, when the VM exposes one.
-          - { name: macOS Metal, os: macos-14, env: "", require: "" }
+          - { name: macOS Metal, os: macos-15, env: "", require: "" }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -129,14 +131,15 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             examples/playground/target
-          key: nsh-${{ env.NSH_VERSION }}-${{ hashFiles('Cargo.toml', 'src/**') }}
-          restore-keys: nsh-${{ env.NSH_VERSION }}-
+          key: nsh-nightly-${{ hashFiles('Cargo.toml', 'src/**') }}
+          restore-keys: nsh-nightly-
       - name: GTK 4 (the Linux development host)
         run: sudo apt-get update && sudo apt-get install -y libgtk-4-dev
-      - name: Install nsh ${{ env.NSH_VERSION }}
+      - name: Install nsh (nightly)
         run: |
-          curl -fsSL https://nsh.dev/install.sh | sh
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          mkdir -p "$HOME/nsh-dist"
+          curl -fsSL "$NSH_ARCHIVE" | tar -xz -C "$HOME/nsh-dist"
+          echo "$HOME/nsh-dist/nsh/bin" >> "$GITHUB_PATH"
       - run: nsh --version
       - name: nsh check (TSX type check against the crate's generated types)
         working-directory: examples/playground
