@@ -141,7 +141,7 @@ jobs:
       - name: nsh check (TSX type check against the crate's generated types)
         working-directory: examples/playground
         run: nsh check
-      - name: nsh test (headless: GpuLexer.parse, explicit Editor fallback, helpers)
+      - name: "nsh test (headless: GpuLexer.parse, explicit Editor fallback, helpers)"
         working-directory: examples/playground
         run: nsh test
 
