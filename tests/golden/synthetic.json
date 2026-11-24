@@ -1,0 +1,8 @@
+{
+  "synthetic-crlf.txt": "fn main() {\r\n\tlet x = \"a\\\"b\";\r\n\t// done\r\n}\r\n\r",
+  "synthetic-unicode.txt": "const 名前 = \"héllo 😀\"; // ünïcödé\nlet ß = 'x'; /* 🦀 */\n",
+  "synthetic-long-word.txt": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;\n                                                                                                                                                      x\n",
+  "synthetic-one-char.txt": "x",
+  "synthetic-symbols.txt": "<>?.??->=>::</{{${}}///**/--\\\n#!@%^&*()[]{}|~`",
+  "synthetic-nesting.txt": "f([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{([{(1)}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}])}]);\n"
+}

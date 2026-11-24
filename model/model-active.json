@@ -1,0 +1,4076 @@
+{
+  "formatVersion": 9,
+  "precision": "int6",
+  "labelSource": "shiki-spans-v1",
+  "model": "hierarchical-tree",
+  "featureVersion": 3,
+  "tokenizerVersion": 2,
+  "createdAt": "2026-11-17T07:14:11.182Z",
+  "runId": "20261117T071411.182Z",
+  "selectedEpoch": 29,
+  "selectedSource": "ema",
+  "taxonomyVersion": 5,
+  "inputSize": 755,
+  "hiddenSize": 32,
+  "architecture": {
+    "direction": "bidirectional",
+    "tree": "scale-aware-butterfly-binary",
+    "blockParts": 32,
+    "classifierDimensions": 176,
+    "lexemeHashBuckets": 256,
+    "secondaryLexemeHashBuckets": 128,
+    "neighborSymbolHashBuckets": 32,
+    "scaleBuckets": 12,
+    "localNeighborParts": 2,
+    "context": "local-affine-tree",
+    "localRadius": 2,
+    "auxiliaryStates": [
+      "comment-state",
+      "string-state",
+      "directive-line",
+      "markup-tag",
+      "embedded-region",
+      "selector-region",
+      "declaration-name",
+      "declaration-value",
+      "member-access",
+      "clause-region",
+      "curly-depth-1",
+      "curly-depth-2+",
+      "paren-depth-1",
+      "paren-depth-2+",
+      "square-depth-1",
+      "square-depth-2+"
+    ],
+    "classifierAuxiliaryStates": true
+  },
+  "acceptance": {
+    "accepted": true,
+    "topAgreement": {
+      "candidate": 0.9387662724199477,
+      "baseline": 0.9346651828648639
+    },
+    "criterion": "fixed-baseline-untouched-verification-accuracy",
+    "languageGuards": "advisory",
+    "improvement": 0.0095179351708784,
+    "candidateAccuracy": 0.8989329445579757,
+    "baselineAccuracy": 0.8894150093870973,
+    "guards": [
+      {
+        "family": "astro",
+        "metric": "error",
+        "support": 6603,
+        "minimum": 100,
+        "delta": 0.0016659094351052575,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "astro",
+        "metric": "falseColorRate",
+        "support": 1675,
+        "minimum": 100,
+        "delta": 0.015522388059701492,
+        "tolerance": 0.018293688871813672,
+        "passed": true
+      },
+      {
+        "family": "batchfile",
+        "metric": "error",
+        "support": 4683,
+        "minimum": 100,
+        "delta": -0.002562459961563096,
+        "tolerance": 0.015595195315110484,
+        "passed": true
+      },
+      {
+        "family": "batchfile",
+        "metric": "falseColorRate",
+        "support": 1939,
+        "minimum": 100,
+        "delta": 0.04280556988138218,
+        "tolerance": 0.02631063194464714,
+        "passed": false
+      },
+      {
+        "family": "c",
+        "metric": "error",
+        "support": 13401,
+        "minimum": 100,
+        "delta": -0.011715543616148051,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "c",
+        "metric": "falseColorRate",
+        "support": 1645,
+        "minimum": 100,
+        "delta": 0.0018237082066869387,
+        "tolerance": 0.021139636033898974,
+        "passed": true
+      },
+      {
+        "family": "cmake",
+        "metric": "error",
+        "support": 12094,
+        "minimum": 100,
+        "delta": -0.0065321647097734414,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "cmake",
+        "metric": "falseColorRate",
+        "support": 3594,
+        "minimum": 100,
+        "delta": 0.0008347245409015061,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "cpp",
+        "metric": "error",
+        "support": 4909,
+        "minimum": 100,
+        "delta": -0.0010185373803218573,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "cpp",
+        "metric": "falseColorRate",
+        "support": 639,
+        "minimum": 100,
+        "delta": 0.025039123630672927,
+        "tolerance": 0.03697708045453741,
+        "passed": true
+      },
+      {
+        "family": "csharp",
+        "metric": "error",
+        "support": 11625,
+        "minimum": 100,
+        "delta": 0.0035268817204301,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "csharp",
+        "metric": "falseColorRate",
+        "support": 1262,
+        "minimum": 100,
+        "delta": 0.023771790808240892,
+        "tolerance": 0.02160743070107916,
+        "passed": false
+      },
+      {
+        "family": "css",
+        "metric": "error",
+        "support": 32404,
+        "minimum": 100,
+        "delta": -0.0026848537217627477,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "css",
+        "metric": "falseColorRate",
+        "support": 9281,
+        "minimum": 100,
+        "delta": 0.029953668785691195,
+        "tolerance": 0.010217507886554766,
+        "passed": false
+      },
+      {
+        "family": "diff",
+        "metric": "error",
+        "support": 2403,
+        "minimum": 100,
+        "delta": -0.010819808572617558,
+        "tolerance": 0.013670660095443373,
+        "passed": true
+      },
+      {
+        "family": "diff",
+        "metric": "falseColorRate",
+        "support": 2217,
+        "minimum": 100,
+        "delta": -0.019846639603067207,
+        "tolerance": 0.013143542646335231,
+        "passed": true
+      },
+      {
+        "family": "dockerfile",
+        "metric": "error",
+        "support": 4313,
+        "minimum": 100,
+        "delta": -0.0020867145838163598,
+        "tolerance": 0.010825492572195191,
+        "passed": true
+      },
+      {
+        "family": "dockerfile",
+        "metric": "falseColorRate",
+        "support": 2851,
+        "minimum": 100,
+        "delta": -0.001052262364082776,
+        "tolerance": 0.01108002018614387,
+        "passed": true
+      },
+      {
+        "family": "go",
+        "metric": "error",
+        "support": 13990,
+        "minimum": 100,
+        "delta": 0.00007147962830593435,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "go",
+        "metric": "falseColorRate",
+        "support": 1468,
+        "minimum": 100,
+        "delta": -0.0006811989100817262,
+        "tolerance": 0.024133471830835876,
+        "passed": true
+      },
+      {
+        "family": "html",
+        "metric": "error",
+        "support": 19138,
+        "minimum": 100,
+        "delta": -0.006217995610826629,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "html",
+        "metric": "falseColorRate",
+        "support": 3325,
+        "minimum": 100,
+        "delta": 0.01924812030075186,
+        "tolerance": 0.015559164920751049,
+        "passed": false
+      },
+      {
+        "family": "java",
+        "metric": "error",
+        "support": 13406,
+        "minimum": 100,
+        "delta": -0.007310159630016411,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "java",
+        "metric": "falseColorRate",
+        "support": 923,
+        "minimum": 100,
+        "delta": -0.05308775731310941,
+        "tolerance": 0.0292580343051595,
+        "passed": true
+      },
+      {
+        "family": "javascript",
+        "metric": "error",
+        "support": 50654,
+        "minimum": 100,
+        "delta": -0.0011845066529790338,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "javascript",
+        "metric": "falseColorRate",
+        "support": 10870,
+        "minimum": 100,
+        "delta": -0.009659613615455382,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "kotlin",
+        "metric": "error",
+        "support": 8096,
+        "minimum": 100,
+        "delta": 0.003458498023715423,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "kotlin",
+        "metric": "falseColorRate",
+        "support": 2703,
+        "minimum": 100,
+        "delta": 0.008139104698483168,
+        "tolerance": 0.01923192442477552,
+        "passed": true
+      },
+      {
+        "family": "makefile",
+        "metric": "error",
+        "support": 10693,
+        "minimum": 100,
+        "delta": -0.01954549705414757,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "makefile",
+        "metric": "falseColorRate",
+        "support": 4708,
+        "minimum": 100,
+        "delta": -0.03483432455395072,
+        "tolerance": 0.012587069779620362,
+        "passed": true
+      },
+      {
+        "family": "markdown",
+        "metric": "error",
+        "support": 6121,
+        "minimum": 100,
+        "delta": 0.025649403692207168,
+        "tolerance": 0.014615968721235568,
+        "passed": false
+      },
+      {
+        "family": "markdown",
+        "metric": "falseColorRate",
+        "support": 2486,
+        "minimum": 100,
+        "delta": 0.041029766693483516,
+        "tolerance": 0.024715109202442423,
+        "passed": false
+      },
+      {
+        "family": "php",
+        "metric": "error",
+        "support": 11483,
+        "minimum": 100,
+        "delta": 0.008273099364277628,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "php",
+        "metric": "falseColorRate",
+        "support": 925,
+        "minimum": 100,
+        "delta": 0.07567567567567567,
+        "tolerance": 0.026763581145537542,
+        "passed": false
+      },
+      {
+        "family": "plpgsql",
+        "metric": "error",
+        "support": 3727,
+        "minimum": 100,
+        "delta": -0.0024148108398175383,
+        "tolerance": 0.021055867731454566,
+        "passed": true
+      },
+      {
+        "family": "plpgsql",
+        "metric": "falseColorRate",
+        "support": 1228,
+        "minimum": 100,
+        "delta": 0.07899022801302932,
+        "tolerance": 0.03384365503643316,
+        "passed": false
+      },
+      {
+        "family": "powershell",
+        "metric": "error",
+        "support": 6071,
+        "minimum": 100,
+        "delta": 0.002800197661011361,
+        "tolerance": 0.01018011413838674,
+        "passed": true
+      },
+      {
+        "family": "powershell",
+        "metric": "falseColorRate",
+        "support": 827,
+        "minimum": 100,
+        "delta": -0.013301088270858519,
+        "tolerance": 0.03920505851300065,
+        "passed": true
+      },
+      {
+        "family": "python",
+        "metric": "error",
+        "support": 27039,
+        "minimum": 100,
+        "delta": -0.008506231739339471,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "python",
+        "metric": "falseColorRate",
+        "support": 4444,
+        "minimum": 100,
+        "delta": -0.0022502250225022516,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "ruby",
+        "metric": "error",
+        "support": 10017,
+        "minimum": 100,
+        "delta": 0.011680143755615463,
+        "tolerance": 0.01,
+        "passed": false
+      },
+      {
+        "family": "ruby",
+        "metric": "falseColorRate",
+        "support": 603,
+        "minimum": 100,
+        "delta": -0.038142620232172464,
+        "tolerance": 0.050082162424685696,
+        "passed": true
+      },
+      {
+        "family": "rust",
+        "metric": "error",
+        "support": 15496,
+        "minimum": 100,
+        "delta": -0.009938048528652557,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "rust",
+        "metric": "falseColorRate",
+        "support": 1394,
+        "minimum": 100,
+        "delta": -0.005021520803443327,
+        "tolerance": 0.02226421759735958,
+        "passed": true
+      },
+      {
+        "family": "shell",
+        "metric": "error",
+        "support": 14210,
+        "minimum": 100,
+        "delta": -0.005066854327938075,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "shell",
+        "metric": "falseColorRate",
+        "support": 459,
+        "minimum": 100,
+        "delta": 0.008714596949891074,
+        "tolerance": 0.06158699354558993,
+        "passed": true
+      },
+      {
+        "family": "svelte",
+        "metric": "error",
+        "support": 6180,
+        "minimum": 100,
+        "delta": 0.006148867313915854,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "svelte",
+        "metric": "falseColorRate",
+        "support": 818,
+        "minimum": 100,
+        "delta": 0.007334963325183373,
+        "tolerance": 0.02274872640968018,
+        "passed": true
+      },
+      {
+        "family": "swift",
+        "metric": "error",
+        "support": 10514,
+        "minimum": 100,
+        "delta": -0.0008560015217804751,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "swift",
+        "metric": "falseColorRate",
+        "support": 1012,
+        "minimum": 100,
+        "delta": -0.002964426877470394,
+        "tolerance": 0.04356508520463767,
+        "passed": true
+      },
+      {
+        "family": "typescript",
+        "metric": "error",
+        "support": 27188,
+        "minimum": 100,
+        "delta": 0.0022804178313962017,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "typescript",
+        "metric": "falseColorRate",
+        "support": 4457,
+        "minimum": 100,
+        "delta": -0.008750280457706976,
+        "tolerance": 0.01,
+        "passed": true
+      },
+      {
+        "family": "vue",
+        "metric": "error",
+        "support": 8933,
+        "minimum": 100,
+        "delta": -0.023396395387887625,
+        "tolerance": 0.010072753805015744,
+        "passed": true
+      },
+      {
+        "family": "vue",
+        "metric": "falseColorRate",
+        "support": 1682,
+        "minimum": 100,
+        "delta": 0.0089179548156956,
+        "tolerance": 0.02335512674351592,
+        "passed": true
+      }
+    ],
+    "strictGuards": [
+      {
+        "language": "css",
+        "tier": "strict",
+        "metric": "error",
+        "support": 23638,
+        "delta": 0.008799390811405364,
+        "tolerance": 0.002,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "css",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 6391,
+        "delta": -0.0009388202159286497,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "html",
+        "tier": "strict",
+        "metric": "error",
+        "support": 11017,
+        "delta": 0.00771534900608151,
+        "tolerance": 0.002,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "html",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 2712,
+        "delta": 0.025811209439528023,
+        "tolerance": 0.002,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "javascript",
+        "tier": "strict",
+        "metric": "error",
+        "support": 49328,
+        "delta": -0.0012974375608173856,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "javascript",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 10658,
+        "delta": -0.009757928316757366,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "python",
+        "tier": "strict",
+        "metric": "error",
+        "support": 35783,
+        "delta": -0.004303719643406086,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "python",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 5103,
+        "delta": -0.009602194787379973,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "tsx",
+        "tier": "strict",
+        "metric": "error",
+        "support": 3334,
+        "delta": 0.002999400119976005,
+        "tolerance": 0.002,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "tsx",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 586,
+        "delta": -0.008532423208191127,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "typescript",
+        "tier": "strict",
+        "metric": "error",
+        "support": 23792,
+        "delta": 0.0021435776731674513,
+        "tolerance": 0.002,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "typescript",
+        "tier": "strict",
+        "metric": "falseColorRate",
+        "support": 3862,
+        "delta": -0.008803728638011392,
+        "tolerance": 0.002,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "astro",
+        "tier": "mature",
+        "metric": "error",
+        "support": 6603,
+        "delta": 0.0016659094351052551,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "astro",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1675,
+        "delta": 0.015522388059701492,
+        "tolerance": 0.01,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "c",
+        "tier": "mature",
+        "metric": "error",
+        "support": 13401,
+        "delta": -0.01171554361614805,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "c",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1645,
+        "delta": 0.00182370820668693,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "cmake",
+        "tier": "mature",
+        "metric": "error",
+        "support": 12094,
+        "delta": -0.0065321647097734414,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "cmake",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 3594,
+        "delta": 0.0008347245409015025,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "cpp",
+        "tier": "mature",
+        "metric": "error",
+        "support": 7784,
+        "delta": -0.025179856115107913,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "cpp",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1178,
+        "delta": 0.00933786078098472,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "csharp",
+        "tier": "mature",
+        "metric": "error",
+        "support": 11625,
+        "delta": 0.0035268817204301074,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "csharp",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1262,
+        "delta": 0.02377179080824089,
+        "tolerance": 0.01,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "diff",
+        "tier": "mature",
+        "metric": "error",
+        "support": 2403,
+        "delta": -0.010819808572617561,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "diff",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 2217,
+        "delta": -0.019846639603067207,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "docker",
+        "tier": "mature",
+        "metric": "error",
+        "support": 4313,
+        "delta": -0.0020867145838163693,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "docker",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 2851,
+        "delta": -0.001052262364082778,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "go",
+        "tier": "mature",
+        "metric": "error",
+        "support": 13990,
+        "delta": 0.0000714796283059328,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "go",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1468,
+        "delta": -0.0006811989100817438,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "java",
+        "tier": "mature",
+        "metric": "error",
+        "support": 13406,
+        "delta": -0.007310159630016411,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "java",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 923,
+        "delta": -0.05308775731310943,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "jsx",
+        "tier": "mature",
+        "metric": "error",
+        "support": 1326,
+        "delta": 0.0030165912518853697,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "jsx",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 212,
+        "delta": -0.0047169811320754715,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "kotlin",
+        "tier": "mature",
+        "metric": "error",
+        "support": 8096,
+        "delta": 0.003458498023715415,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "kotlin",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 2703,
+        "delta": 0.008139104698483167,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "make",
+        "tier": "mature",
+        "metric": "error",
+        "support": 10693,
+        "delta": -0.019545497054147574,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "make",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 4708,
+        "delta": -0.034834324553950725,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "php",
+        "tier": "mature",
+        "metric": "error",
+        "support": 11483,
+        "delta": 0.008273099364277628,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "php",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 925,
+        "delta": 0.07567567567567568,
+        "tolerance": 0.01,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "powershell",
+        "tier": "mature",
+        "metric": "error",
+        "support": 6071,
+        "delta": 0.0028001976610113654,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "powershell",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 827,
+        "delta": -0.013301088270858524,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "rust",
+        "tier": "mature",
+        "metric": "error",
+        "support": 15496,
+        "delta": -0.009938048528652555,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "rust",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1394,
+        "delta": -0.005021520803443328,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "shell",
+        "tier": "mature",
+        "metric": "error",
+        "support": 9788,
+        "delta": -0.0026563138536984062,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "shell",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 375,
+        "delta": 0.005333333333333333,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "shellscript",
+        "tier": "mature",
+        "metric": "error",
+        "support": 5324,
+        "delta": -0.0033809166040570998,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "shellscript",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 143,
+        "delta": 0.055944055944055944,
+        "tolerance": 0.01,
+        "passed": false,
+        "reason": "regression"
+      },
+      {
+        "language": "svelte",
+        "tier": "mature",
+        "metric": "error",
+        "support": 6180,
+        "delta": 0.006148867313915857,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "svelte",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 818,
+        "delta": 0.007334963325183374,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "swift",
+        "tier": "mature",
+        "metric": "error",
+        "support": 10514,
+        "delta": -0.0008560015217804832,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      },
+      {
+        "language": "swift",
+        "tier": "mature",
+        "metric": "falseColorRate",
+        "support": 1012,
+        "delta": -0.0029644268774703555,
+        "tolerance": 0.01,
+        "passed": true,
+        "reason": null
+      }
+    ],
+    "failures": [],
+    "warnings": [
+      "batchfile falseColorRate: regression",
+      "csharp falseColorRate: regression",
+      "css falseColorRate: regression",
+      "html falseColorRate: regression",
+      "markdown error: regression",
+      "markdown falseColorRate: regression",
+      "php falseColorRate: regression",
+      "plpgsql falseColorRate: regression",
+      "ruby error: regression",
+      "css error: regression",
+      "html error: regression",
+      "tsx error: regression",
+      "typescript error: regression",
+      "astro falseColorRate: regression",
+      "shellscript falseColorRate: regression"
+    ]
+  },
+  "classNames": [
+    "plain",
+    "comment",
+    "string",
+    "number",
+    "keyword",
+    "type",
+    "function",
+    "constant",
+    "operator"
+  ],
+  "auxiliaryNames": [
+    "comment-state",
+    "string-state",
+    "directive-line",
+    "markup-tag",
+    "embedded-region",
+    "selector-region",
+    "declaration-name",
+    "declaration-value",
+    "member-access",
+    "clause-region",
+    "curly-depth-1",
+    "curly-depth-2+",
+    "paren-depth-1",
+    "paren-depth-2+",
+    "square-depth-1",
+    "square-depth-2+"
+  ],
+  "parameterCount": 50969,
+  "runtimeParameterCount": 50969,
+  "runtimeWeightBytes": 38227,
+  "tensorLayout": [
+    {
+      "name": "featureEmbedding",
+      "shape": [
+        755,
+        32
+      ],
+      "offset": 0,
+      "length": 24160
+    },
+    {
+      "name": "neighborScale",
+      "shape": [
+        3,
+        32
+      ],
+      "offset": 24160,
+      "length": 96
+    },
+    {
+      "name": "leafBias",
+      "shape": [
+        32
+      ],
+      "offset": 24256,
+      "length": 32
+    },
+    {
+      "name": "mergeOwnLeft",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 24288,
+      "length": 384
+    },
+    {
+      "name": "mergeOwnRight",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 24672,
+      "length": 384
+    },
+    {
+      "name": "mergeCrossLeft",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 25056,
+      "length": 384
+    },
+    {
+      "name": "mergeCrossRight",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 25440,
+      "length": 384
+    },
+    {
+      "name": "mergeBias",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 25824,
+      "length": 384
+    },
+    {
+      "name": "downOwnParent",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 26208,
+      "length": 384
+    },
+    {
+      "name": "downOwnSelf",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 26592,
+      "length": 384
+    },
+    {
+      "name": "downOwnSibling",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 26976,
+      "length": 384
+    },
+    {
+      "name": "downCrossParent",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 27360,
+      "length": 384
+    },
+    {
+      "name": "downCrossSelf",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 27744,
+      "length": 384
+    },
+    {
+      "name": "downCrossSibling",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 28128,
+      "length": 384
+    },
+    {
+      "name": "downSkip",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 28512,
+      "length": 384
+    },
+    {
+      "name": "downLeftBias",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 28896,
+      "length": 384
+    },
+    {
+      "name": "downRightBias",
+      "shape": [
+        12,
+        32
+      ],
+      "offset": 29280,
+      "length": 384
+    },
+    {
+      "name": "classifierInput",
+      "shape": [
+        176,
+        80
+      ],
+      "offset": 29664,
+      "length": 14080
+    },
+    {
+      "name": "classifierBias",
+      "shape": [
+        176
+      ],
+      "offset": 43744,
+      "length": 176
+    },
+    {
+      "name": "output",
+      "shape": [
+        9,
+        176
+      ],
+      "offset": 43920,
+      "length": 1584
+    },
+    {
+      "name": "outputBias",
+      "shape": [
+        9
+      ],
+      "offset": 45504,
+      "length": 9
+    },
+    {
+      "name": "auxiliaryOutput",
+      "shape": [
+        16,
+        64
+      ],
+      "offset": 45513,
+      "length": 1024
+    },
+    {
+      "name": "auxiliaryBias",
+      "shape": [
+        16
+      ],
+      "offset": 46537,
+      "length": 16
+    },
+    {
+      "name": "localOffsetScale",
+      "shape": [
+        5,
+        32
+      ],
+      "offset": 46553,
+      "length": 160
+    },
+    {
+      "name": "localNonspaceScale",
+      "shape": [
+        2,
+        32
+      ],
+      "offset": 46713,
+      "length": 64
+    },
+    {
+      "name": "stateInput",
+      "shape": [
+        32,
+        32
+      ],
+      "offset": 46777,
+      "length": 1024
+    },
+    {
+      "name": "stateInputBias",
+      "shape": [
+        32
+      ],
+      "offset": 47801,
+      "length": 32
+    },
+    {
+      "name": "stateGate",
+      "shape": [
+        32,
+        32
+      ],
+      "offset": 47833,
+      "length": 1024
+    },
+    {
+      "name": "stateGateBias",
+      "shape": [
+        32
+      ],
+      "offset": 48857,
+      "length": 32
+    },
+    {
+      "name": "stateMix",
+      "shape": [
+        32,
+        64
+      ],
+      "offset": 48889,
+      "length": 2048
+    },
+    {
+      "name": "stateMixBias",
+      "shape": [
+        32
+      ],
+      "offset": 50937,
+      "length": 32
+    }
+  ],
+  "quantization": {
+    "type": "symmetric-int6-per-tensor",
+    "bits": 6,
+    "parameterCount": 50969,
+    "packedByteLength": 38227,
+    "tensors": [
+      {
+        "name": "featureEmbedding",
+        "offset": 0,
+        "length": 24160,
+        "scale": 0.2621793746948242
+      },
+      {
+        "name": "neighborScale",
+        "offset": 24160,
+        "length": 96,
+        "scale": 0.03225806451612903
+      },
+      {
+        "name": "leafBias",
+        "offset": 24256,
+        "length": 32,
+        "scale": 0.01188559974393537
+      },
+      {
+        "name": "mergeOwnLeft",
+        "offset": 24288,
+        "length": 384,
+        "scale": 0.08325056106813493
+      },
+      {
+        "name": "mergeOwnRight",
+        "offset": 24672,
+        "length": 384,
+        "scale": 0.10837609537186162
+      },
+      {
+        "name": "mergeCrossLeft",
+        "offset": 25056,
+        "length": 384,
+        "scale": 0.05020363100113407
+      },
+      {
+        "name": "mergeCrossRight",
+        "offset": 25440,
+        "length": 384,
+        "scale": 0.04204939257714056
+      },
+      {
+        "name": "mergeBias",
+        "offset": 25824,
+        "length": 384,
+        "scale": 0.03353706867464127
+      },
+      {
+        "name": "downOwnParent",
+        "offset": 26208,
+        "length": 384,
+        "scale": 0.0809451687720514
+      },
+      {
+        "name": "downOwnSelf",
+        "offset": 26592,
+        "length": 384,
+        "scale": 0.04019846070197321
+      },
+      {
+        "name": "downOwnSibling",
+        "offset": 26976,
+        "length": 384,
+        "scale": 0.07147823610613423
+      },
+      {
+        "name": "downCrossParent",
+        "offset": 27360,
+        "length": 384,
+        "scale": 0.04994158975539669
+      },
+      {
+        "name": "downCrossSelf",
+        "offset": 27744,
+        "length": 384,
+        "scale": 0.05150891888526178
+      },
+      {
+        "name": "downCrossSibling",
+        "offset": 28128,
+        "length": 384,
+        "scale": 0.036710143089294434
+      },
+      {
+        "name": "downSkip",
+        "offset": 28512,
+        "length": 384,
+        "scale": 0.0840231833919402
+      },
+      {
+        "name": "downLeftBias",
+        "offset": 28896,
+        "length": 384,
+        "scale": 0.04425309165831535
+      },
+      {
+        "name": "downRightBias",
+        "offset": 29280,
+        "length": 384,
+        "scale": 0.0886865661990258
+      },
+      {
+        "name": "classifierInput",
+        "offset": 29664,
+        "length": 14080,
+        "scale": 0.11190279837577574
+      },
+      {
+        "name": "classifierBias",
+        "offset": 43744,
+        "length": 176,
+        "scale": 0.016223780570491668
+      },
+      {
+        "name": "output",
+        "offset": 43920,
+        "length": 1584,
+        "scale": 0.05351519200109666
+      },
+      {
+        "name": "outputBias",
+        "offset": 45504,
+        "length": 9,
+        "scale": 0.018060778417894916
+      },
+      {
+        "name": "auxiliaryOutput",
+        "offset": 45513,
+        "length": 1024,
+        "scale": 0.08612691202471333
+      },
+      {
+        "name": "auxiliaryBias",
+        "offset": 46537,
+        "length": 16,
+        "scale": 0.05543075069304435
+      },
+      {
+        "name": "localOffsetScale",
+        "offset": 46553,
+        "length": 160,
+        "scale": 0.059798959762819355
+      },
+      {
+        "name": "localNonspaceScale",
+        "offset": 46713,
+        "length": 64,
+        "scale": 0.020740664774371732
+      },
+      {
+        "name": "stateInput",
+        "offset": 46777,
+        "length": 1024,
+        "scale": 0.035369873046875
+      },
+      {
+        "name": "stateInputBias",
+        "offset": 47801,
+        "length": 32,
+        "scale": 0.011065134117680212
+      },
+      {
+        "name": "stateGate",
+        "offset": 47833,
+        "length": 1024,
+        "scale": 0.08038856906275596
+      },
+      {
+        "name": "stateGateBias",
+        "offset": 48857,
+        "length": 32,
+        "scale": 0.16413517921201645
+      },
+      {
+        "name": "stateMix",
+        "offset": 48889,
+        "length": 2048,
+        "scale": 0.06225539791968561
+      },
+      {
+        "name": "stateMixBias",
+        "offset": 50937,
+        "length": 32,
+        "scale": 0.030857564941529306
+      }
+    ]
+  },
+  "corpus": {
+    "train": {
+      "sha256": "881825626c89497de7b604e59ec6b2de46010a1b9fe4d4257a0488957663ea0c",
+      "tokens": 6357620,
+      "scoredTokens": 4200000,
+      "files": 7833,
+      "streams": 7833,
+      "sources": [
+        "AdaCore/Ada_Drivers_Library",
+        "Azure/bicep-registry-modules",
+        "Cyanilux/URP_ShaderCodeTemplates",
+        "FluxML/Flux.jl",
+        "GDQuest/godot-open-rpg",
+        "GoogleCloudPlatform/cloud-builders-community",
+        "HaxeFlixel/flixel",
+        "JuliaData/DataFrames.jl",
+        "LuaLS/lua-language-server",
+        "MudBlazor/MudBlazor",
+        "OpenZeppelin/openzeppelin-contracts",
+        "PostgREST/postgrest",
+        "PowerShell/PowerShell",
+        "Reference-LAPACK/lapack",
+        "SDWebImage/SDWebImage",
+        "SaschaWillems/Vulkan",
+        "Schneegans/Gnome-Pie",
+        "SnapKit/Masonry",
+        "TwoTailsGames/Unity-Built-in-Shaders",
+        "alexveden/c3tools",
+        "apache/ant",
+        "apache/groovy",
+        "apache/hadoop",
+        "apache/jmeter",
+        "apache/kafka",
+        "apache/karaf",
+        "apache/tomcat",
+        "apex-enterprise-patterns/fflib-apex-common",
+        "apple/swift-argument-parser",
+        "bazelbuild/bazel-skylib",
+        "bazelbuild/rules_go",
+        "behave/behave",
+        "bootstrap",
+        "c3lang/vendor",
+        "contiki-ng/contiki-ng",
+        "cucumber/cucumber-js",
+        "cython/cython",
+        "dart-lang/samples",
+        "dense-analysis/ale",
+        "devcontainers/images",
+        "dlang/dub",
+        "docker/awesome-compose",
+        "dominikh/go-mode.el",
+        "dotnet-architecture/eShopOnWeb",
+        "dotnet/command-line-api",
+        "duckdb/duckdb",
+        "encode/httpx",
+        "etcd-io/etcd",
+        "facebook/react",
+        "facebook/zstd",
+        "fmtlib/fmt",
+        "fortran-lang/stdlib",
+        "gfx-rs/wgpu",
+        "ggml-org/whisper.cpp",
+        "github-linguist/linguist",
+        "github/hubot-scripts",
+        "go-chi/chi",
+        "google/googletest",
+        "google/gson",
+        "h5bp/html5-boilerplate",
+        "haskell/aeson",
+        "icsharpcode/CodeConverter",
+        "jaspervdj/hakyll",
+        "jessfraz/dockerfiles",
+        "kubernetes-sigs/kind",
+        "kubernetes/ingress-nginx",
+        "lcallarec/live-chart",
+        "less/less.js",
+        "libuv/libuv",
+        "lowRISC/ibex",
+        "mdn/dom-examples",
+        "mdn/learning-area",
+        "mesonbuild/meson",
+        "micropython/micropython",
+        "microsoft/terminal",
+        "microsoft/vscode-dev-containers",
+        "moby/moby",
+        "necolas/normalize.css",
+        "netwide-assembler/nasm",
+        "nim-lang/nimble",
+        "nix-community/home-manager",
+        "ohmyzsh/ohmyzsh",
+        "openssl/openssl",
+        "pallets/flask",
+        "postcss/postcss",
+        "prisma/prisma-examples",
+        "protocolbuffers/protobuf",
+        "psf/requests",
+        "puppetlabs/puppetlabs-apache",
+        "puppetlabs/puppetlabs-stdlib",
+        "rapidsai/cudf",
+        "react",
+        "rust-lang/rust-mode",
+        "sdkman/sdkman-cli",
+        "serde-rs/serde",
+        "sinatra/sinatra",
+        "slimphp/Slim",
+        "solidjs/solid",
+        "sorin-ionescu/prezto",
+        "spf13/cobra",
+        "sqlalchemy/mako",
+        "sqlfluff/sqlfluff",
+        "square/okhttp",
+        "sveltejs/realworld",
+        "sveltejs/svelte",
+        "tailwindlabs/tailwindcss",
+        "terraform-aws-modules/terraform-aws-eks",
+        "terraform-google-modules/terraform-google-kubernetes-engine",
+        "tidyverse/dplyr",
+        "tigerbeetle/tigerbeetle",
+        "tokio-rs/tokio",
+        "trailheadapps/lwc-recipes",
+        "twbs/bootstrap",
+        "typelevel/cats",
+        "typescript",
+        "valkey-io/valkey",
+        "vercel/next.js",
+        "vibe-d/vibe.d",
+        "vitejs/vite",
+        "voldyman/MarkMyWords",
+        "vuejs/core",
+        "vuejs/vitepress",
+        "withastro/astro",
+        "zigtools/zls",
+        "zsh-users/zsh-syntax-highlighting"
+      ]
+    },
+    "verification": {
+      "sha256": "6757c82f635faef58fa7b9526ed1a0d7531755079004c0d46d5fa193cc36e0d2",
+      "tokens": 724666,
+      "scoredTokens": 481512,
+      "files": 1929,
+      "streams": 1929,
+      "sources": [
+        "Alamofire/Alamofire",
+        "ColinLeung-NiloCat/UnityURPToonLitShaderExample",
+        "Kitware/CMake",
+        "Kotlin/kotlinx.coroutines",
+        "alpinejs/alpine",
+        "apache/commons-lang",
+        "bash-it/bash-it",
+        "benhoyt/inih",
+        "cbracco/html5-test-page",
+        "cel-expr/cel-spec",
+        "compose-spec/compose-spec",
+        "denoland/deno",
+        "django/django",
+        "facebook/docusaurus",
+        "huntabyte/shadcn-svelte",
+        "jgthms/bulma",
+        "luarocks/luarocks",
+        "microsoft/GSL",
+        "microsoft/php-sdk-binary-tools",
+        "modern-normalize",
+        "nikic/FastRoute",
+        "nlohmann/json",
+        "nuxt/nuxt",
+        "pallets/click",
+        "preact",
+        "preactjs/preact",
+        "prometheus/client_golang",
+        "purcell/emacs.d",
+        "pydantic/pydantic",
+        "pygments/pygments",
+        "remix-run/react-router",
+        "rouge-ruby/rouge",
+        "ruby/rake",
+        "rust-lang/rustlings",
+        "sass/sass",
+        "sindresorhus/modern-normalize",
+        "spectreconsole/spectre.console",
+        "stretchr/testify",
+        "svelte",
+        "sveltejs/kit",
+        "tobymao/sqlglot",
+        "tokio-rs/bytes",
+        "vuejs/docs",
+        "vuejs/router",
+        "website:api-example",
+        "website:demo-afnetworking-session-manager",
+        "website:demo-alamofire-session",
+        "website:demo-astro-blog-index",
+        "website:demo-axum-hello-world",
+        "website:demo-bootstrap",
+        "website:demo-bootstrap-variables",
+        "website:demo-checkout-action",
+        "website:demo-cmake-root",
+        "website:demo-directx-hello-triangle-shaders",
+        "website:demo-dotnet-string",
+        "website:demo-flutter-framework",
+        "website:demo-fx-worker-runtime",
+        "website:demo-gin",
+        "website:demo-github-icon",
+        "website:demo-godot-canvas-shader",
+        "website:demo-haskell-sudoku",
+        "website:demo-html5",
+        "website:demo-junit-assertions",
+        "website:demo-ktor-application",
+        "website:demo-laravel-model",
+        "website:demo-linguist-xslt",
+        "website:demo-lodash",
+        "website:demo-node-dockerfile",
+        "website:demo-normalize",
+        "website:demo-nvm-install",
+        "website:demo-openzeppelin-erc20",
+        "website:demo-portless-certs",
+        "website:demo-powershell-installer",
+        "website:demo-prometheus-counter",
+        "website:demo-protobuf-ascii",
+        "website:demo-pydantic-main",
+        "website:demo-pytorch-cuda-sort",
+        "website:demo-rails",
+        "website:demo-react",
+        "website:demo-react-app",
+        "website:demo-react-fixture",
+        "website:demo-react-main",
+        "website:demo-react-readme",
+        "website:demo-react-root",
+        "website:demo-redis",
+        "website:demo-redis-makefile",
+        "website:demo-requests-sessions",
+        "website:demo-ripgrep-core",
+        "website:demo-solid-app",
+        "website:demo-solid-index",
+        "website:demo-svelte-app",
+        "website:demo-svelte-counter",
+        "website:demo-tailwind-experimental",
+        "website:demo-terraform-aws-vpc",
+        "website:demo-three",
+        "website:demo-tokio-worker",
+        "website:demo-typescript-package",
+        "website:demo-vue-hero",
+        "website:demo-vue-layout",
+        "website:demo-vue-modal",
+        "website:demo-zod-v3-types",
+        "website:probe-actionscript",
+        "website:probe-ada",
+        "website:probe-angular-html",
+        "website:probe-angular-ts",
+        "website:probe-apex",
+        "website:probe-bicep",
+        "website:probe-c3",
+        "website:probe-coffeescript",
+        "website:probe-cython",
+        "website:probe-d",
+        "website:probe-gdscript",
+        "website:probe-graphql",
+        "website:probe-groovy",
+        "website:probe-haxe",
+        "website:probe-julia",
+        "website:probe-less",
+        "website:probe-nginx",
+        "website:probe-nim",
+        "website:probe-odin",
+        "website:probe-plist",
+        "website:probe-prisma",
+        "website:probe-protobuf",
+        "website:probe-puppet",
+        "website:probe-qml",
+        "website:probe-r",
+        "website:probe-razor",
+        "website:probe-rss",
+        "website:probe-scala",
+        "website:probe-systemverilog",
+        "website:probe-toml",
+        "website:probe-vala",
+        "website:probe-vb",
+        "website:probe-webassembly",
+        "website:probe-wgsl",
+        "website:probe-xml",
+        "withastro/docs",
+        "withastro/starlight"
+      ]
+    }
+  },
+  "verification": {
+    "accuracy": 0.8989329445579757,
+    "macroF1": 0.842823095958417,
+    "falseColorRate": 0.1906450334759065,
+    "confusion": [
+      [
+        79664,
+        1020,
+        3781,
+        259,
+        1375,
+        1031,
+        1662,
+        377,
+        9260
+      ],
+      [
+        892,
+        123915,
+        1904,
+        37,
+        243,
+        10,
+        22,
+        6,
+        484
+      ],
+      [
+        2942,
+        1578,
+        87134,
+        118,
+        226,
+        125,
+        191,
+        74,
+        1852
+      ],
+      [
+        212,
+        18,
+        167,
+        5963,
+        4,
+        4,
+        43,
+        40,
+        110
+      ],
+      [
+        2847,
+        437,
+        258,
+        67,
+        25246,
+        581,
+        478,
+        120,
+        1023
+      ],
+      [
+        1600,
+        13,
+        97,
+        6,
+        410,
+        5933,
+        240,
+        113,
+        38
+      ],
+      [
+        1239,
+        44,
+        439,
+        6,
+        243,
+        113,
+        9824,
+        10,
+        277
+      ],
+      [
+        885,
+        28,
+        507,
+        19,
+        58,
+        47,
+        88,
+        2455,
+        97
+      ],
+      [
+        3935,
+        418,
+        1250,
+        23,
+        418,
+        17,
+        78,
+        31,
+        92713
+      ]
+    ],
+    "perClass": [
+      {
+        "class": "plain",
+        "support": 98429,
+        "precision": 0.8455464040078119,
+        "recall": 0.8093549665240936,
+        "f1": 0.8270549456253731
+      },
+      {
+        "class": "comment",
+        "support": 127513,
+        "precision": 0.9721034588259291,
+        "recall": 0.9717832691568703,
+        "f1": 0.9719433376211841
+      },
+      {
+        "class": "string",
+        "support": 94240,
+        "precision": 0.9120445481855197,
+        "recall": 0.9245967741935484,
+        "f1": 0.9182777681173167
+      },
+      {
+        "class": "number",
+        "support": 6561,
+        "precision": 0.9176669744536781,
+        "recall": 0.9088553574150282,
+        "f1": 0.9132399111723716
+      },
+      {
+        "class": "keyword",
+        "support": 31057,
+        "precision": 0.8945186549976969,
+        "recall": 0.8128924236082042,
+        "f1": 0.8517543859649123
+      },
+      {
+        "class": "type",
+        "support": 8450,
+        "precision": 0.7547385828774965,
+        "recall": 0.7021301775147929,
+        "f1": 0.7274845196493164
+      },
+      {
+        "class": "function",
+        "support": 12195,
+        "precision": 0.7780769840012672,
+        "recall": 0.8055760557605576,
+        "f1": 0.7915877684219008
+      },
+      {
+        "class": "constant",
+        "support": 4184,
+        "precision": 0.7610043397396157,
+        "recall": 0.5867590822179732,
+        "f1": 0.6626180836707153
+      },
+      {
+        "class": "operator",
+        "support": 98883,
+        "precision": 0.8758573129026773,
+        "recall": 0.9376030257981655,
+        "f1": 0.9056789930496197
+      }
+    ],
+    "mixedLanguage": {
+      "accuracy": 0.9104754919936439,
+      "macroF1": 0
+    },
+    "perLanguage": {
+      "tsx": {
+        "support": 3334,
+        "errors": 68,
+        "plainSupport": 586,
+        "falseColors": 24,
+        "accuracy": 0.9796040791841631,
+        "error": 0.020395920815836834,
+        "falseColorRate": 0.040955631399317405
+      },
+      "javascript": {
+        "support": 49328,
+        "errors": 964,
+        "plainSupport": 10658,
+        "falseColors": 241,
+        "accuracy": 0.9804573467401881,
+        "error": 0.01954265325981187,
+        "falseColorRate": 0.022612122349408896
+      },
+      "python": {
+        "support": 35783,
+        "errors": 875,
+        "plainSupport": 5103,
+        "falseColors": 212,
+        "accuracy": 0.9755470474806472,
+        "error": 0.024452952519352766,
+        "falseColorRate": 0.04154418969233784
+      },
+      "typescript": {
+        "support": 23792,
+        "errors": 959,
+        "plainSupport": 3862,
+        "falseColors": 118,
+        "accuracy": 0.9596923335574983,
+        "error": 0.04030766644250168,
+        "falseColorRate": 0.030554117037804248
+      },
+      "shell": {
+        "support": 9788,
+        "errors": 820,
+        "plainSupport": 375,
+        "falseColors": 138,
+        "accuracy": 0.9162239476910503,
+        "error": 0.08377605230894973,
+        "falseColorRate": 0.368
+      },
+      "docker": {
+        "support": 4313,
+        "errors": 300,
+        "plainSupport": 2851,
+        "falseColors": 134,
+        "accuracy": 0.930442847206121,
+        "error": 0.06955715279387897,
+        "falseColorRate": 0.04700105226236408
+      },
+      "java": {
+        "support": 13406,
+        "errors": 843,
+        "plainSupport": 923,
+        "falseColors": 83,
+        "accuracy": 0.9371177084887364,
+        "error": 0.06288229151126361,
+        "falseColorRate": 0.08992416034669556
+      },
+      "cpp": {
+        "support": 7784,
+        "errors": 495,
+        "plainSupport": 1178,
+        "falseColors": 149,
+        "accuracy": 0.9364080164439876,
+        "error": 0.06359198355601234,
+        "falseColorRate": 0.1264855687606112
+      },
+      "c": {
+        "support": 13401,
+        "errors": 486,
+        "plainSupport": 1645,
+        "falseColors": 177,
+        "accuracy": 0.9637340496977838,
+        "error": 0.03626595030221625,
+        "falseColorRate": 0.10759878419452888
+      },
+      "make": {
+        "support": 10693,
+        "errors": 778,
+        "plainSupport": 4708,
+        "falseColors": 432,
+        "accuracy": 0.9272421210137474,
+        "error": 0.07275787898625269,
+        "falseColorRate": 0.09175870858113849
+      },
+      "bat": {
+        "support": 4683,
+        "errors": 841,
+        "plainSupport": 1939,
+        "falseColors": 480,
+        "accuracy": 0.8204142643604527,
+        "error": 0.1795857356395473,
+        "falseColorRate": 0.2475502836513667
+      },
+      "php": {
+        "support": 11483,
+        "errors": 1025,
+        "plainSupport": 925,
+        "falseColors": 124,
+        "accuracy": 0.9107376121222677,
+        "error": 0.0892623878777323,
+        "falseColorRate": 0.13405405405405404
+      },
+      "csharp": {
+        "support": 11625,
+        "errors": 1072,
+        "plainSupport": 1262,
+        "falseColors": 120,
+        "accuracy": 0.9077849462365591,
+        "error": 0.09221505376344086,
+        "falseColorRate": 0.09508716323296355
+      },
+      "powershell": {
+        "support": 6071,
+        "errors": 554,
+        "plainSupport": 827,
+        "falseColors": 167,
+        "accuracy": 0.9087464997529238,
+        "error": 0.09125350024707626,
+        "falseColorRate": 0.20193470374848851
+      },
+      "cmake": {
+        "support": 12094,
+        "errors": 438,
+        "plainSupport": 3594,
+        "falseColors": 141,
+        "accuracy": 0.9637836943939143,
+        "error": 0.036216305606085665,
+        "falseColorRate": 0.03923205342237062
+      },
+      "kotlin": {
+        "support": 8096,
+        "errors": 814,
+        "plainSupport": 2703,
+        "falseColors": 426,
+        "accuracy": 0.8994565217391304,
+        "error": 0.10054347826086957,
+        "falseColorRate": 0.15760266370699222
+      },
+      "ruby": {
+        "support": 10017,
+        "errors": 1594,
+        "plainSupport": 603,
+        "falseColors": 151,
+        "accuracy": 0.8408705201158031,
+        "error": 0.15912947988419687,
+        "falseColorRate": 0.2504145936981758
+      },
+      "swift": {
+        "support": 10514,
+        "errors": 876,
+        "plainSupport": 1012,
+        "falseColors": 501,
+        "accuracy": 0.9166825185466996,
+        "error": 0.08331748145330037,
+        "falseColorRate": 0.4950592885375494
+      },
+      "go": {
+        "support": 13990,
+        "errors": 674,
+        "plainSupport": 1468,
+        "falseColors": 186,
+        "accuracy": 0.9518227305218013,
+        "error": 0.04817726947819871,
+        "falseColorRate": 0.12670299727520437
+      },
+      "rust": {
+        "support": 15496,
+        "errors": 653,
+        "plainSupport": 1394,
+        "falseColors": 135,
+        "accuracy": 0.957860092927207,
+        "error": 0.04213990707279298,
+        "falseColorRate": 0.09684361549497848
+      },
+      "objective-c": {
+        "support": 3262,
+        "errors": 501,
+        "plainSupport": 587,
+        "falseColors": 205,
+        "accuracy": 0.8464132434089515,
+        "error": 0.15358675659104842,
+        "falseColorRate": 0.3492333901192504
+      },
+      "lua": {
+        "support": 6084,
+        "errors": 1696,
+        "plainSupport": 1553,
+        "falseColors": 440,
+        "accuracy": 0.7212360289283366,
+        "error": 0.2787639710716634,
+        "falseColorRate": 0.28332260141661303
+      },
+      "asm": {
+        "support": 3074,
+        "errors": 1365,
+        "plainSupport": 967,
+        "falseColors": 836,
+        "accuracy": 0.5559531554977228,
+        "error": 0.44404684450227716,
+        "falseColorRate": 0.8645294725956567
+      },
+      "nix": {
+        "support": 1322,
+        "errors": 298,
+        "plainSupport": 224,
+        "falseColors": 38,
+        "accuracy": 0.7745839636913767,
+        "error": 0.2254160363086233,
+        "falseColorRate": 0.16964285714285715
+      },
+      "perl": {
+        "support": 2226,
+        "errors": 812,
+        "plainSupport": 853,
+        "falseColors": 585,
+        "accuracy": 0.6352201257861636,
+        "error": 0.36477987421383645,
+        "falseColorRate": 0.6858147713950762
+      },
+      "hlsl": {
+        "support": 4251,
+        "errors": 369,
+        "plainSupport": 834,
+        "falseColors": 300,
+        "accuracy": 0.9131968948482709,
+        "error": 0.08680310515172901,
+        "falseColorRate": 0.3597122302158273
+      },
+      "shaderlab": {
+        "support": 2987,
+        "errors": 823,
+        "plainSupport": 1923,
+        "falseColors": 311,
+        "accuracy": 0.7244727150987613,
+        "error": 0.2755272849012387,
+        "falseColorRate": 0.16172646905876234
+      },
+      "xsl": {
+        "support": 2170,
+        "errors": 140,
+        "plainSupport": 343,
+        "falseColors": 94,
+        "accuracy": 0.935483870967742,
+        "error": 0.06451612903225806,
+        "falseColorRate": 0.27405247813411077
+      },
+      "viml": {
+        "support": 810,
+        "errors": 137,
+        "plainSupport": 88,
+        "falseColors": 11,
+        "accuracy": 0.8308641975308642,
+        "error": 0.16913580246913582,
+        "falseColorRate": 0.125
+      },
+      "objective-cpp": {
+        "support": 384,
+        "errors": 46,
+        "plainSupport": 46,
+        "falseColors": 21,
+        "accuracy": 0.8802083333333334,
+        "error": 0.11979166666666667,
+        "falseColorRate": 0.45652173913043476
+      },
+      "fortran-fixed-form": {
+        "support": 1485,
+        "errors": 250,
+        "plainSupport": 396,
+        "falseColors": 28,
+        "accuracy": 0.8316498316498316,
+        "error": 0.16835016835016836,
+        "falseColorRate": 0.0707070707070707
+      },
+      "fortran-free-form": {
+        "support": 1422,
+        "errors": 291,
+        "plainSupport": 361,
+        "falseColors": 89,
+        "accuracy": 0.7953586497890295,
+        "error": 0.20464135021097046,
+        "falseColorRate": 0.24653739612188366
+      },
+      "shellscript": {
+        "support": 5324,
+        "errors": 422,
+        "plainSupport": 143,
+        "falseColors": 54,
+        "accuracy": 0.9207362885048835,
+        "error": 0.07926371149511645,
+        "falseColorRate": 0.3776223776223776
+      },
+      "emacs-lisp": {
+        "support": 5887,
+        "errors": 2139,
+        "plainSupport": 1212,
+        "falseColors": 960,
+        "accuracy": 0.6366570409376593,
+        "error": 0.36334295906234076,
+        "falseColorRate": 0.7920792079207921
+      },
+      "html": {
+        "support": 11017,
+        "errors": 633,
+        "plainSupport": 2712,
+        "falseColors": 403,
+        "accuracy": 0.9425433421076518,
+        "error": 0.05745665789234819,
+        "falseColorRate": 0.14859882005899705
+      },
+      "css": {
+        "support": 23638,
+        "errors": 1386,
+        "plainSupport": 6391,
+        "falseColors": 404,
+        "accuracy": 0.9413655977663085,
+        "error": 0.05863440223369151,
+        "falseColorRate": 0.06321389453919575
+      },
+      "scss": {
+        "support": 6858,
+        "errors": 1818,
+        "plainSupport": 2332,
+        "falseColors": 939,
+        "accuracy": 0.7349081364829396,
+        "error": 0.2650918635170604,
+        "falseColorRate": 0.40265866209262435
+      },
+      "vue": {
+        "support": 8933,
+        "errors": 1117,
+        "plainSupport": 1682,
+        "falseColors": 240,
+        "accuracy": 0.8749580208216725,
+        "error": 0.12504197917832754,
+        "falseColorRate": 0.1426872770511296
+      },
+      "svelte": {
+        "support": 6180,
+        "errors": 232,
+        "plainSupport": 818,
+        "falseColors": 50,
+        "accuracy": 0.9624595469255663,
+        "error": 0.037540453074433655,
+        "falseColorRate": 0.061124694376528114
+      },
+      "astro": {
+        "support": 6603,
+        "errors": 271,
+        "plainSupport": 1675,
+        "falseColors": 145,
+        "accuracy": 0.9589580493714978,
+        "error": 0.041041950628502195,
+        "falseColorRate": 0.08656716417910448
+      },
+      "diff": {
+        "support": 2403,
+        "errors": 136,
+        "plainSupport": 2217,
+        "falseColors": 94,
+        "accuracy": 0.943404078235539,
+        "error": 0.05659592176446109,
+        "falseColorRate": 0.042399639152007215
+      },
+      "jsx": {
+        "support": 1326,
+        "errors": 7,
+        "plainSupport": 212,
+        "falseColors": 0,
+        "accuracy": 0.9947209653092006,
+        "error": 0.005279034690799397,
+        "falseColorRate": 0
+      },
+      "sql": {
+        "support": 3836,
+        "errors": 1237,
+        "plainSupport": 1242,
+        "falseColors": 361,
+        "accuracy": 0.6775286757038581,
+        "error": 0.32247132429614184,
+        "falseColorRate": 0.29066022544283415
+      },
+      "dart": {
+        "support": 4975,
+        "errors": 343,
+        "plainSupport": 307,
+        "falseColors": 168,
+        "accuracy": 0.9310552763819095,
+        "error": 0.06894472361809045,
+        "falseColorRate": 0.5472312703583062
+      },
+      "hcl": {
+        "support": 4740,
+        "errors": 393,
+        "plainSupport": 1228,
+        "falseColors": 193,
+        "accuracy": 0.9170886075949367,
+        "error": 0.08291139240506329,
+        "falseColorRate": 0.15716612377850162
+      },
+      "r": {
+        "support": 2035,
+        "errors": 515,
+        "plainSupport": 833,
+        "falseColors": 175,
+        "accuracy": 0.7469287469287469,
+        "error": 0.25307125307125306,
+        "falseColorRate": 0.21008403361344538
+      },
+      "hack": {
+        "support": 157,
+        "errors": 49,
+        "plainSupport": 29,
+        "falseColors": 25,
+        "accuracy": 0.6878980891719746,
+        "error": 0.31210191082802546,
+        "falseColorRate": 0.8620689655172413
+      },
+      "jinja": {
+        "support": 158,
+        "errors": 112,
+        "plainSupport": 158,
+        "falseColors": 112,
+        "accuracy": 0.2911392405063291,
+        "error": 0.7088607594936709,
+        "falseColorRate": 0.7088607594936709
+      },
+      "glsl": {
+        "support": 4571,
+        "errors": 613,
+        "plainSupport": 1103,
+        "falseColors": 100,
+        "accuracy": 0.8658936775322686,
+        "error": 0.13410632246773135,
+        "falseColorRate": 0.09066183136899365
+      },
+      "liquid": {
+        "support": 123,
+        "errors": 68,
+        "plainSupport": 76,
+        "falseColors": 67,
+        "accuracy": 0.44715447154471544,
+        "error": 0.5528455284552846,
+        "falseColorRate": 0.881578947368421
+      },
+      "matlab": {
+        "support": 155,
+        "errors": 88,
+        "plainSupport": 43,
+        "falseColors": 31,
+        "accuracy": 0.432258064516129,
+        "error": 0.567741935483871,
+        "falseColorRate": 0.7209302325581395
+      },
+      "solidity": {
+        "support": 2360,
+        "errors": 130,
+        "plainSupport": 191,
+        "falseColors": 55,
+        "accuracy": 0.9449152542372882,
+        "error": 0.05508474576271186,
+        "falseColorRate": 0.2879581151832461
+      },
+      "gherkin": {
+        "support": 98,
+        "errors": 38,
+        "plainSupport": 59,
+        "falseColors": 3,
+        "accuracy": 0.6122448979591837,
+        "error": 0.3877551020408163,
+        "falseColorRate": 0.05084745762711865
+      },
+      "awk": {
+        "support": 107,
+        "errors": 30,
+        "plainSupport": 43,
+        "falseColors": 21,
+        "accuracy": 0.719626168224299,
+        "error": 0.2803738317757009,
+        "falseColorRate": 0.4883720930232558
+      },
+      "mdx": {
+        "support": 352,
+        "errors": 138,
+        "plainSupport": 112,
+        "falseColors": 68,
+        "accuracy": 0.6079545454545454,
+        "error": 0.39204545454545453,
+        "falseColorRate": 0.6071428571428571
+      },
+      "markdown": {
+        "support": 5769,
+        "errors": 1273,
+        "plainSupport": 2374,
+        "falseColors": 659,
+        "accuracy": 0.7793378401802739,
+        "error": 0.22066215981972612,
+        "falseColorRate": 0.2775905644481887
+      },
+      "zig": {
+        "support": 3895,
+        "errors": 861,
+        "plainSupport": 1452,
+        "falseColors": 526,
+        "accuracy": 0.7789473684210526,
+        "error": 0.22105263157894736,
+        "falseColorRate": 0.3622589531680441
+      },
+      "xml": {
+        "support": 2007,
+        "errors": 112,
+        "plainSupport": 340,
+        "falseColors": 67,
+        "accuracy": 0.9441953163926258,
+        "error": 0.05580468360737419,
+        "falseColorRate": 0.19705882352941176
+      },
+      "json": {
+        "support": 605,
+        "errors": 0,
+        "plainSupport": 0,
+        "falseColors": 0,
+        "accuracy": 1,
+        "error": 0,
+        "falseColorRate": null
+      },
+      "yaml": {
+        "support": 1022,
+        "errors": 579,
+        "plainSupport": 0,
+        "falseColors": 0,
+        "accuracy": 0.4334637964774951,
+        "error": 0.5665362035225049,
+        "falseColorRate": null
+      },
+      "haskell": {
+        "support": 423,
+        "errors": 196,
+        "plainSupport": 182,
+        "falseColors": 96,
+        "accuracy": 0.5366430260047281,
+        "error": 0.46335697399527187,
+        "falseColorRate": 0.5274725274725275
+      },
+      "wgsl": {
+        "support": 558,
+        "errors": 39,
+        "plainSupport": 114,
+        "falseColors": 24,
+        "accuracy": 0.9301075268817205,
+        "error": 0.06989247311827956,
+        "falseColorRate": 0.21052631578947367
+      },
+      "less": {
+        "support": 1908,
+        "errors": 278,
+        "plainSupport": 558,
+        "falseColors": 172,
+        "accuracy": 0.8542976939203355,
+        "error": 0.14570230607966456,
+        "falseColorRate": 0.30824372759856633
+      },
+      "proto": {
+        "support": 4362,
+        "errors": 291,
+        "plainSupport": 268,
+        "falseColors": 110,
+        "accuracy": 0.9332874828060522,
+        "error": 0.06671251719394773,
+        "falseColorRate": 0.41044776119402987
+      },
+      "graphql": {
+        "support": 217,
+        "errors": 114,
+        "plainSupport": 70,
+        "falseColors": 13,
+        "accuracy": 0.4746543778801844,
+        "error": 0.5253456221198156,
+        "falseColorRate": 0.18571428571428572
+      },
+      "toml": {
+        "support": 1551,
+        "errors": 79,
+        "plainSupport": 172,
+        "falseColors": 43,
+        "accuracy": 0.9490651192778853,
+        "error": 0.050934880722114766,
+        "falseColorRate": 0.25
+      },
+      "scala": {
+        "support": 384,
+        "errors": 50,
+        "plainSupport": 105,
+        "falseColors": 18,
+        "accuracy": 0.8697916666666666,
+        "error": 0.13020833333333334,
+        "falseColorRate": 0.17142857142857143
+      },
+      "groovy": {
+        "support": 370,
+        "errors": 113,
+        "plainSupport": 87,
+        "falseColors": 52,
+        "accuracy": 0.6945945945945946,
+        "error": 0.3054054054054054,
+        "falseColorRate": 0.5977011494252874
+      },
+      "vala": {
+        "support": 1837,
+        "errors": 984,
+        "plainSupport": 924,
+        "falseColors": 745,
+        "accuracy": 0.46434403919433864,
+        "error": 0.5356559608056614,
+        "falseColorRate": 0.8062770562770563
+      },
+      "qml": {
+        "support": 141,
+        "errors": 54,
+        "plainSupport": 67,
+        "falseColors": 50,
+        "accuracy": 0.6170212765957447,
+        "error": 0.3829787234042553,
+        "falseColorRate": 0.746268656716418
+      },
+      "apex": {
+        "support": 1283,
+        "errors": 31,
+        "plainSupport": 50,
+        "falseColors": 2,
+        "accuracy": 0.9758378799688231,
+        "error": 0.024162120031176928,
+        "falseColorRate": 0.04
+      },
+      "c3": {
+        "support": 4323,
+        "errors": 932,
+        "plainSupport": 889,
+        "falseColors": 19,
+        "accuracy": 0.7844089752486699,
+        "error": 0.2155910247513301,
+        "falseColorRate": 0.021372328458942633
+      },
+      "d": {
+        "support": 4538,
+        "errors": 1206,
+        "plainSupport": 1272,
+        "falseColors": 814,
+        "accuracy": 0.7342441604230938,
+        "error": 0.2657558395769061,
+        "falseColorRate": 0.639937106918239
+      },
+      "odin": {
+        "support": 487,
+        "errors": 63,
+        "plainSupport": 90,
+        "falseColors": 44,
+        "accuracy": 0.8706365503080082,
+        "error": 0.1293634496919918,
+        "falseColorRate": 0.4888888888888889
+      },
+      "gdscript": {
+        "support": 1119,
+        "errors": 135,
+        "plainSupport": 320,
+        "falseColors": 83,
+        "accuracy": 0.8793565683646113,
+        "error": 0.12064343163538874,
+        "falseColorRate": 0.259375
+      },
+      "nim": {
+        "support": 5890,
+        "errors": 973,
+        "plainSupport": 1276,
+        "falseColors": 441,
+        "accuracy": 0.8348047538200339,
+        "error": 0.16519524617996603,
+        "falseColorRate": 0.3456112852664577
+      },
+      "razor": {
+        "support": 1169,
+        "errors": 465,
+        "plainSupport": 830,
+        "falseColors": 340,
+        "accuracy": 0.602224123182207,
+        "error": 0.397775876817793,
+        "falseColorRate": 0.40963855421686746
+      },
+      "actionscript-3": {
+        "support": 1784,
+        "errors": 154,
+        "plainSupport": 127,
+        "falseColors": 102,
+        "accuracy": 0.9136771300448431,
+        "error": 0.08632286995515695,
+        "falseColorRate": 0.8031496062992126
+      },
+      "haxe": {
+        "support": 2425,
+        "errors": 387,
+        "plainSupport": 741,
+        "falseColors": 332,
+        "accuracy": 0.8404123711340206,
+        "error": 0.15958762886597938,
+        "falseColorRate": 0.44804318488529016
+      },
+      "bicep": {
+        "support": 600,
+        "errors": 163,
+        "plainSupport": 281,
+        "falseColors": 142,
+        "accuracy": 0.7283333333333333,
+        "error": 0.27166666666666667,
+        "falseColorRate": 0.505338078291815
+      },
+      "coffeescript": {
+        "support": 2885,
+        "errors": 281,
+        "plainSupport": 494,
+        "falseColors": 109,
+        "accuracy": 0.9025996533795494,
+        "error": 0.0974003466204506,
+        "falseColorRate": 0.22064777327935223
+      },
+      "system-verilog": {
+        "support": 3069,
+        "errors": 756,
+        "plainSupport": 1086,
+        "falseColors": 451,
+        "accuracy": 0.7536656891495601,
+        "error": 0.24633431085043989,
+        "falseColorRate": 0.4152854511970534
+      },
+      "wasm": {
+        "support": 745,
+        "errors": 72,
+        "plainSupport": 32,
+        "falseColors": 15,
+        "accuracy": 0.9033557046979865,
+        "error": 0.09664429530201342,
+        "falseColorRate": 0.46875
+      },
+      "nginx": {
+        "support": 814,
+        "errors": 95,
+        "plainSupport": 124,
+        "falseColors": 60,
+        "accuracy": 0.8832923832923834,
+        "error": 0.1167076167076167,
+        "falseColorRate": 0.4838709677419355
+      },
+      "prisma": {
+        "support": 3337,
+        "errors": 686,
+        "plainSupport": 718,
+        "falseColors": 400,
+        "accuracy": 0.7944261312556188,
+        "error": 0.2055738687443812,
+        "falseColorRate": 0.5571030640668524
+      },
+      "ada": {
+        "support": 102,
+        "errors": 52,
+        "plainSupport": 33,
+        "falseColors": 9,
+        "accuracy": 0.4901960784313726,
+        "error": 0.5098039215686274,
+        "falseColorRate": 0.2727272727272727
+      },
+      "angular-html": {
+        "support": 8121,
+        "errors": 90,
+        "plainSupport": 613,
+        "falseColors": 24,
+        "accuracy": 0.9889176209826376,
+        "error": 0.011082379017362394,
+        "falseColorRate": 0.03915171288743882
+      },
+      "angular-ts": {
+        "support": 62,
+        "errors": 3,
+        "plainSupport": 9,
+        "falseColors": 1,
+        "accuracy": 0.9516129032258065,
+        "error": 0.04838709677419355,
+        "falseColorRate": 0.1111111111111111
+      },
+      "vb": {
+        "support": 3812,
+        "errors": 2556,
+        "plainSupport": 1104,
+        "falseColors": 453,
+        "accuracy": 0.329485834207765,
+        "error": 0.670514165792235,
+        "falseColorRate": 0.41032608695652173
+      },
+      "puppet": {
+        "support": 2532,
+        "errors": 684,
+        "plainSupport": 893,
+        "falseColors": 517,
+        "accuracy": 0.7298578199052133,
+        "error": 0.27014218009478674,
+        "falseColorRate": 0.5789473684210527
+      },
+      "julia": {
+        "support": 362,
+        "errors": 86,
+        "plainSupport": 125,
+        "falseColors": 67,
+        "accuracy": 0.7624309392265194,
+        "error": 0.23756906077348067,
+        "falseColorRate": 0.536
+      }
+    },
+    "weightedError": 0.07598502807686021,
+    "perFamily": {
+      "actionscript": {
+        "support": 1784,
+        "errors": 154,
+        "plainSupport": 127,
+        "falseColors": 102,
+        "error": 0.08632286995515695,
+        "falseColorRate": 0.8031496062992126
+      },
+      "ada": {
+        "support": 102,
+        "errors": 52,
+        "plainSupport": 33,
+        "falseColors": 9,
+        "error": 0.5098039215686274,
+        "falseColorRate": 0.2727272727272727
+      },
+      "apex": {
+        "support": 1283,
+        "errors": 31,
+        "plainSupport": 50,
+        "falseColors": 2,
+        "error": 0.024162120031176928,
+        "falseColorRate": 0.04
+      },
+      "assembly": {
+        "support": 3074,
+        "errors": 1365,
+        "plainSupport": 967,
+        "falseColors": 836,
+        "error": 0.44404684450227716,
+        "falseColorRate": 0.8645294725956567
+      },
+      "astro": {
+        "support": 6603,
+        "errors": 271,
+        "plainSupport": 1675,
+        "falseColors": 145,
+        "error": 0.041041950628502195,
+        "falseColorRate": 0.08656716417910448
+      },
+      "awk": {
+        "support": 107,
+        "errors": 30,
+        "plainSupport": 43,
+        "falseColors": 21,
+        "error": 0.2803738317757009,
+        "falseColorRate": 0.4883720930232558
+      },
+      "batchfile": {
+        "support": 4683,
+        "errors": 841,
+        "plainSupport": 1939,
+        "falseColors": 480,
+        "error": 0.1795857356395473,
+        "falseColorRate": 0.2475502836513667
+      },
+      "bicep": {
+        "support": 600,
+        "errors": 163,
+        "plainSupport": 281,
+        "falseColors": 142,
+        "error": 0.27166666666666667,
+        "falseColorRate": 0.505338078291815
+      },
+      "c": {
+        "support": 13401,
+        "errors": 486,
+        "plainSupport": 1645,
+        "falseColors": 177,
+        "error": 0.03626595030221625,
+        "falseColorRate": 0.10759878419452888
+      },
+      "c3": {
+        "support": 4323,
+        "errors": 932,
+        "plainSupport": 889,
+        "falseColors": 19,
+        "error": 0.2155910247513301,
+        "falseColorRate": 0.021372328458942633
+      },
+      "cmake": {
+        "support": 12094,
+        "errors": 438,
+        "plainSupport": 3594,
+        "falseColors": 141,
+        "error": 0.036216305606085665,
+        "falseColorRate": 0.03923205342237062
+      },
+      "coffeescript": {
+        "support": 2885,
+        "errors": 281,
+        "plainSupport": 494,
+        "falseColors": 109,
+        "error": 0.0974003466204506,
+        "falseColorRate": 0.22064777327935223
+      },
+      "cpp": {
+        "support": 4909,
+        "errors": 252,
+        "plainSupport": 639,
+        "falseColors": 91,
+        "error": 0.051334283968221636,
+        "falseColorRate": 0.14241001564945227
+      },
+      "csharp": {
+        "support": 11625,
+        "errors": 1072,
+        "plainSupport": 1262,
+        "falseColors": 120,
+        "error": 0.09221505376344086,
+        "falseColorRate": 0.09508716323296355
+      },
+      "css": {
+        "support": 32404,
+        "errors": 3482,
+        "plainSupport": 9281,
+        "falseColors": 1515,
+        "error": 0.10745586964572275,
+        "falseColorRate": 0.16323672018101498
+      },
+      "cuda": {
+        "support": 2875,
+        "errors": 243,
+        "plainSupport": 539,
+        "falseColors": 58,
+        "error": 0.08452173913043479,
+        "falseColorRate": 0.10760667903525047
+      },
+      "cython": {
+        "support": 655,
+        "errors": 42,
+        "plainSupport": 208,
+        "falseColors": 18,
+        "error": 0.06412213740458016,
+        "falseColorRate": 0.08653846153846154
+      },
+      "d": {
+        "support": 4538,
+        "errors": 1206,
+        "plainSupport": 1272,
+        "falseColors": 814,
+        "error": 0.2657558395769061,
+        "falseColorRate": 0.639937106918239
+      },
+      "dart": {
+        "support": 4975,
+        "errors": 343,
+        "plainSupport": 307,
+        "falseColors": 168,
+        "error": 0.06894472361809045,
+        "falseColorRate": 0.5472312703583062
+      },
+      "diff": {
+        "support": 2403,
+        "errors": 136,
+        "plainSupport": 2217,
+        "falseColors": 94,
+        "error": 0.05659592176446109,
+        "falseColorRate": 0.042399639152007215
+      },
+      "dockerfile": {
+        "support": 4313,
+        "errors": 300,
+        "plainSupport": 2851,
+        "falseColors": 134,
+        "error": 0.06955715279387897,
+        "falseColorRate": 0.04700105226236408
+      },
+      "emacs-lisp": {
+        "support": 5887,
+        "errors": 2139,
+        "plainSupport": 1212,
+        "falseColors": 960,
+        "error": 0.36334295906234076,
+        "falseColorRate": 0.7920792079207921
+      },
+      "fortran": {
+        "support": 2907,
+        "errors": 541,
+        "plainSupport": 757,
+        "falseColors": 117,
+        "error": 0.18610251117991056,
+        "falseColorRate": 0.154557463672391
+      },
+      "gdscript": {
+        "support": 1119,
+        "errors": 135,
+        "plainSupport": 320,
+        "falseColors": 83,
+        "error": 0.12064343163538874,
+        "falseColorRate": 0.259375
+      },
+      "gherkin": {
+        "support": 98,
+        "errors": 38,
+        "plainSupport": 59,
+        "falseColors": 3,
+        "error": 0.3877551020408163,
+        "falseColorRate": 0.05084745762711865
+      },
+      "glsl": {
+        "support": 4571,
+        "errors": 613,
+        "plainSupport": 1103,
+        "falseColors": 100,
+        "error": 0.13410632246773135,
+        "falseColorRate": 0.09066183136899365
+      },
+      "go": {
+        "support": 13990,
+        "errors": 674,
+        "plainSupport": 1468,
+        "falseColors": 186,
+        "error": 0.04817726947819871,
+        "falseColorRate": 0.12670299727520437
+      },
+      "graphql": {
+        "support": 217,
+        "errors": 114,
+        "plainSupport": 70,
+        "falseColors": 13,
+        "error": 0.5253456221198156,
+        "falseColorRate": 0.18571428571428572
+      },
+      "groovy": {
+        "support": 370,
+        "errors": 113,
+        "plainSupport": 87,
+        "falseColors": 52,
+        "error": 0.3054054054054054,
+        "falseColorRate": 0.5977011494252874
+      },
+      "hack": {
+        "support": 157,
+        "errors": 49,
+        "plainSupport": 29,
+        "falseColors": 25,
+        "error": 0.31210191082802546,
+        "falseColorRate": 0.8620689655172413
+      },
+      "haskell": {
+        "support": 423,
+        "errors": 196,
+        "plainSupport": 182,
+        "falseColors": 96,
+        "error": 0.46335697399527187,
+        "falseColorRate": 0.5274725274725275
+      },
+      "haxe": {
+        "support": 2425,
+        "errors": 387,
+        "plainSupport": 741,
+        "falseColors": 332,
+        "error": 0.15958762886597938,
+        "falseColorRate": 0.44804318488529016
+      },
+      "hcl": {
+        "support": 4740,
+        "errors": 393,
+        "plainSupport": 1228,
+        "falseColors": 193,
+        "error": 0.08291139240506329,
+        "falseColorRate": 0.15716612377850162
+      },
+      "hlsl": {
+        "support": 4251,
+        "errors": 369,
+        "plainSupport": 834,
+        "falseColors": 300,
+        "error": 0.08680310515172901,
+        "falseColorRate": 0.3597122302158273
+      },
+      "html": {
+        "support": 19138,
+        "errors": 723,
+        "plainSupport": 3325,
+        "falseColors": 427,
+        "error": 0.0377782422405685,
+        "falseColorRate": 0.12842105263157894
+      },
+      "java": {
+        "support": 13406,
+        "errors": 843,
+        "plainSupport": 923,
+        "falseColors": 83,
+        "error": 0.06288229151126361,
+        "falseColorRate": 0.08992416034669556
+      },
+      "javascript": {
+        "support": 50654,
+        "errors": 971,
+        "plainSupport": 10870,
+        "falseColors": 241,
+        "error": 0.019169266000710703,
+        "falseColorRate": 0.022171113155473782
+      },
+      "json": {
+        "support": 605,
+        "errors": 0,
+        "plainSupport": 0,
+        "falseColors": 0,
+        "error": 0,
+        "falseColorRate": null
+      },
+      "julia": {
+        "support": 362,
+        "errors": 86,
+        "plainSupport": 125,
+        "falseColors": 67,
+        "error": 0.23756906077348067,
+        "falseColorRate": 0.536
+      },
+      "kotlin": {
+        "support": 8096,
+        "errors": 814,
+        "plainSupport": 2703,
+        "falseColors": 426,
+        "error": 0.10054347826086957,
+        "falseColorRate": 0.15760266370699222
+      },
+      "lua": {
+        "support": 6084,
+        "errors": 1696,
+        "plainSupport": 1553,
+        "falseColors": 440,
+        "error": 0.2787639710716634,
+        "falseColorRate": 0.28332260141661303
+      },
+      "m4": {
+        "support": 709,
+        "errors": 154,
+        "plainSupport": 57,
+        "falseColors": 30,
+        "error": 0.21720733427362482,
+        "falseColorRate": 0.5263157894736842
+      },
+      "makefile": {
+        "support": 10693,
+        "errors": 778,
+        "plainSupport": 4708,
+        "falseColors": 432,
+        "error": 0.07275787898625269,
+        "falseColorRate": 0.09175870858113849
+      },
+      "mako": {
+        "support": 158,
+        "errors": 112,
+        "plainSupport": 158,
+        "falseColors": 112,
+        "error": 0.7088607594936709,
+        "falseColorRate": 0.7088607594936709
+      },
+      "markdown": {
+        "support": 6121,
+        "errors": 1411,
+        "plainSupport": 2486,
+        "falseColors": 727,
+        "error": 0.23051788923378533,
+        "falseColorRate": 0.2924376508447305
+      },
+      "matlab": {
+        "support": 155,
+        "errors": 88,
+        "plainSupport": 43,
+        "falseColors": 31,
+        "error": 0.567741935483871,
+        "falseColorRate": 0.7209302325581395
+      },
+      "meson": {
+        "support": 1076,
+        "errors": 41,
+        "plainSupport": 210,
+        "falseColors": 37,
+        "error": 0.03810408921933085,
+        "falseColorRate": 0.1761904761904762
+      },
+      "nginx": {
+        "support": 814,
+        "errors": 95,
+        "plainSupport": 124,
+        "falseColors": 60,
+        "error": 0.1167076167076167,
+        "falseColorRate": 0.4838709677419355
+      },
+      "nim": {
+        "support": 5890,
+        "errors": 973,
+        "plainSupport": 1276,
+        "falseColors": 441,
+        "error": 0.16519524617996603,
+        "falseColorRate": 0.3456112852664577
+      },
+      "nix": {
+        "support": 1322,
+        "errors": 298,
+        "plainSupport": 224,
+        "falseColors": 38,
+        "error": 0.2254160363086233,
+        "falseColorRate": 0.16964285714285715
+      },
+      "objective-c": {
+        "support": 3262,
+        "errors": 501,
+        "plainSupport": 587,
+        "falseColors": 205,
+        "error": 0.15358675659104842,
+        "falseColorRate": 0.3492333901192504
+      },
+      "objective-cpp": {
+        "support": 384,
+        "errors": 46,
+        "plainSupport": 46,
+        "falseColors": 21,
+        "error": 0.11979166666666667,
+        "falseColorRate": 0.45652173913043476
+      },
+      "odin": {
+        "support": 487,
+        "errors": 63,
+        "plainSupport": 90,
+        "falseColors": 44,
+        "error": 0.1293634496919918,
+        "falseColorRate": 0.4888888888888889
+      },
+      "perl": {
+        "support": 2226,
+        "errors": 812,
+        "plainSupport": 853,
+        "falseColors": 585,
+        "error": 0.36477987421383645,
+        "falseColorRate": 0.6858147713950762
+      },
+      "php": {
+        "support": 11483,
+        "errors": 1025,
+        "plainSupport": 925,
+        "falseColors": 124,
+        "error": 0.0892623878777323,
+        "falseColorRate": 0.13405405405405404
+      },
+      "plist": {
+        "support": 674,
+        "errors": 51,
+        "plainSupport": 167,
+        "falseColors": 45,
+        "error": 0.07566765578635015,
+        "falseColorRate": 0.2694610778443114
+      },
+      "plpgsql": {
+        "support": 3727,
+        "errors": 1162,
+        "plainSupport": 1228,
+        "falseColors": 348,
+        "error": 0.3117789106519989,
+        "falseColorRate": 0.28338762214983715
+      },
+      "powershell": {
+        "support": 6071,
+        "errors": 554,
+        "plainSupport": 827,
+        "falseColors": 167,
+        "error": 0.09125350024707626,
+        "falseColorRate": 0.20193470374848851
+      },
+      "prisma": {
+        "support": 3337,
+        "errors": 686,
+        "plainSupport": 718,
+        "falseColors": 400,
+        "error": 0.2055738687443812,
+        "falseColorRate": 0.5571030640668524
+      },
+      "procfile": {
+        "support": 193,
+        "errors": 82,
+        "plainSupport": 2,
+        "falseColors": 1,
+        "error": 0.42487046632124353,
+        "falseColorRate": 0.5
+      },
+      "protobuf": {
+        "support": 4362,
+        "errors": 291,
+        "plainSupport": 268,
+        "falseColors": 110,
+        "error": 0.06671251719394773,
+        "falseColorRate": 0.41044776119402987
+      },
+      "puppet": {
+        "support": 2532,
+        "errors": 684,
+        "plainSupport": 893,
+        "falseColors": 517,
+        "error": 0.27014218009478674,
+        "falseColorRate": 0.5789473684210527
+      },
+      "python": {
+        "support": 27039,
+        "errors": 621,
+        "plainSupport": 4444,
+        "falseColors": 144,
+        "error": 0.022966825696216577,
+        "falseColorRate": 0.032403240324032405
+      },
+      "qml": {
+        "support": 141,
+        "errors": 54,
+        "plainSupport": 67,
+        "falseColors": 50,
+        "error": 0.3829787234042553,
+        "falseColorRate": 0.746268656716418
+      },
+      "r": {
+        "support": 2035,
+        "errors": 515,
+        "plainSupport": 833,
+        "falseColors": 175,
+        "error": 0.25307125307125306,
+        "falseColorRate": 0.21008403361344538
+      },
+      "razor": {
+        "support": 1169,
+        "errors": 465,
+        "plainSupport": 830,
+        "falseColors": 340,
+        "error": 0.397775876817793,
+        "falseColorRate": 0.40963855421686746
+      },
+      "rss": {
+        "support": 127,
+        "errors": 4,
+        "plainSupport": 52,
+        "falseColors": 4,
+        "error": 0.031496062992125984,
+        "falseColorRate": 0.07692307692307693
+      },
+      "ruby": {
+        "support": 10017,
+        "errors": 1594,
+        "plainSupport": 603,
+        "falseColors": 151,
+        "error": 0.15912947988419687,
+        "falseColorRate": 0.2504145936981758
+      },
+      "rust": {
+        "support": 15496,
+        "errors": 653,
+        "plainSupport": 1394,
+        "falseColors": 135,
+        "error": 0.04213990707279298,
+        "falseColorRate": 0.09684361549497848
+      },
+      "scala": {
+        "support": 384,
+        "errors": 50,
+        "plainSupport": 105,
+        "falseColors": 18,
+        "error": 0.13020833333333334,
+        "falseColorRate": 0.17142857142857143
+      },
+      "shaderlab": {
+        "support": 2987,
+        "errors": 823,
+        "plainSupport": 1923,
+        "falseColors": 311,
+        "error": 0.2755272849012387,
+        "falseColorRate": 0.16172646905876234
+      },
+      "shell": {
+        "support": 14210,
+        "errors": 1006,
+        "plainSupport": 459,
+        "falseColors": 161,
+        "error": 0.07079521463757917,
+        "falseColorRate": 0.35076252723311546
+      },
+      "smarty": {
+        "support": 123,
+        "errors": 68,
+        "plainSupport": 76,
+        "falseColors": 67,
+        "error": 0.5528455284552846,
+        "falseColorRate": 0.881578947368421
+      },
+      "solidity": {
+        "support": 2360,
+        "errors": 130,
+        "plainSupport": 191,
+        "falseColors": 55,
+        "error": 0.05508474576271186,
+        "falseColorRate": 0.2879581151832461
+      },
+      "starlark": {
+        "support": 7013,
+        "errors": 171,
+        "plainSupport": 241,
+        "falseColors": 13,
+        "error": 0.024383288179095963,
+        "falseColorRate": 0.05394190871369295
+      },
+      "svelte": {
+        "support": 6180,
+        "errors": 232,
+        "plainSupport": 818,
+        "falseColors": 50,
+        "error": 0.037540453074433655,
+        "falseColorRate": 0.061124694376528114
+      },
+      "svg": {
+        "support": 464,
+        "errors": 1,
+        "plainSupport": 9,
+        "falseColors": 0,
+        "error": 0.0021551724137931034,
+        "falseColorRate": 0
+      },
+      "swift": {
+        "support": 10514,
+        "errors": 876,
+        "plainSupport": 1012,
+        "falseColors": 501,
+        "error": 0.08331748145330037,
+        "falseColorRate": 0.4950592885375494
+      },
+      "systemverilog": {
+        "support": 3069,
+        "errors": 756,
+        "plainSupport": 1086,
+        "falseColors": 451,
+        "error": 0.24633431085043989,
+        "falseColorRate": 0.4152854511970534
+      },
+      "toml": {
+        "support": 1551,
+        "errors": 79,
+        "plainSupport": 172,
+        "falseColors": 43,
+        "error": 0.050934880722114766,
+        "falseColorRate": 0.25
+      },
+      "tsql": {
+        "support": 109,
+        "errors": 75,
+        "plainSupport": 14,
+        "falseColors": 13,
+        "error": 0.6880733944954128,
+        "falseColorRate": 0.9285714285714286
+      },
+      "typescript": {
+        "support": 27188,
+        "errors": 1030,
+        "plainSupport": 4457,
+        "falseColors": 143,
+        "error": 0.03788436074738855,
+        "falseColorRate": 0.03208436167825892
+      },
+      "vala": {
+        "support": 1837,
+        "errors": 984,
+        "plainSupport": 924,
+        "falseColors": 745,
+        "error": 0.5356559608056614,
+        "falseColorRate": 0.8062770562770563
+      },
+      "vb": {
+        "support": 3812,
+        "errors": 2556,
+        "plainSupport": 1104,
+        "falseColors": 453,
+        "error": 0.670514165792235,
+        "falseColorRate": 0.41032608695652173
+      },
+      "vim-script": {
+        "support": 810,
+        "errors": 137,
+        "plainSupport": 88,
+        "falseColors": 11,
+        "error": 0.16913580246913582,
+        "falseColorRate": 0.125
+      },
+      "vue": {
+        "support": 8933,
+        "errors": 1117,
+        "plainSupport": 1682,
+        "falseColors": 240,
+        "error": 0.12504197917832754,
+        "falseColorRate": 0.1426872770511296
+      },
+      "webassembly": {
+        "support": 745,
+        "errors": 72,
+        "plainSupport": 32,
+        "falseColors": 15,
+        "error": 0.09664429530201342,
+        "falseColorRate": 0.46875
+      },
+      "wgsl": {
+        "support": 558,
+        "errors": 39,
+        "plainSupport": 114,
+        "falseColors": 24,
+        "error": 0.06989247311827956,
+        "falseColorRate": 0.21052631578947367
+      },
+      "xml": {
+        "support": 742,
+        "errors": 56,
+        "plainSupport": 112,
+        "falseColors": 18,
+        "error": 0.07547169811320754,
+        "falseColorRate": 0.16071428571428573
+      },
+      "xslt": {
+        "support": 2170,
+        "errors": 140,
+        "plainSupport": 343,
+        "falseColors": 94,
+        "error": 0.06451612903225806,
+        "falseColorRate": 0.27405247813411077
+      },
+      "yaml": {
+        "support": 1022,
+        "errors": 579,
+        "plainSupport": 0,
+        "falseColors": 0,
+        "error": 0.5665362035225049,
+        "falseColorRate": null
+      },
+      "zig": {
+        "support": 3895,
+        "errors": 861,
+        "plainSupport": 1452,
+        "falseColors": 526,
+        "error": 0.22105263157894736,
+        "falseColorRate": 0.3622589531680441
+      }
+    },
+    "missingFamilies": [],
+    "unknownFamilies": [],
+    "objectiveComplete": true,
+    "languageObjective": {
+      "schemaVersion": 1,
+      "popularitySha256": "d263daa807ff1f884db97cfb99ed03619b5277090dd92b78c4f228ea838aa586",
+      "supplementalWeights": {
+        "html": 1,
+        "css": 1,
+        "markdown": 1,
+        "vue": 1,
+        "svelte": 1,
+        "astro": 1,
+        "diff": 1
+      },
+      "familyWeights": {
+        "actionscript": 0,
+        "ada": 0,
+        "apex": 0,
+        "assembly": 0.005332710280373833,
+        "astro": 0.009345794392523366,
+        "awk": 0.0015280373831775703,
+        "batchfile": 0.020597196261682247,
+        "bicep": 0,
+        "c": 0.029771028037383185,
+        "c3": 0,
+        "cmake": 0.01718224299065421,
+        "coffeescript": 0,
+        "cpp": 0.030985046728971965,
+        "csharp": 0.018519626168224303,
+        "css": 0.009345794392523366,
+        "cuda": 0.002146728971962617,
+        "cython": 0.0021065420560747667,
+        "d": 0,
+        "dart": 0.006877570093457945,
+        "diff": 0.009345794392523366,
+        "dockerfile": 0.05683644859813085,
+        "emacs-lisp": 0.0016121495327102804,
+        "fortran": 0.001783177570093458,
+        "gdscript": 0,
+        "gherkin": 0.001579439252336449,
+        "glsl": 0.002970093457943926,
+        "go": 0.012914018691588786,
+        "graphql": 0,
+        "groovy": 0,
+        "hack": 0.0036719626168224308,
+        "haskell": 0,
+        "haxe": 0,
+        "hcl": 0.00517196261682243,
+        "hlsl": 0.0033579439252336453,
+        "html": 0.009345794392523366,
+        "java": 0.03525514018691589,
+        "javascript": 0.1857299065420561,
+        "json": 0,
+        "julia": 0,
+        "kotlin": 0.014222429906542058,
+        "lua": 0.008194392523364487,
+        "m4": 0.001863551401869159,
+        "makefile": 0.02703457943925234,
+        "mako": 0.003499065420560748,
+        "markdown": 0.009345794392523366,
+        "matlab": 0.002340186915887851,
+        "meson": 0.0018214953271028038,
+        "nginx": 0,
+        "nim": 0,
+        "nix": 0.005128037383177571,
+        "objective-c": 0.009062616822429908,
+        "objective-cpp": 0.0021626168224299067,
+        "odin": 0,
+        "perl": 0.0045420560747663555,
+        "php": 0.018338317757009347,
+        "plist": 0,
+        "plpgsql": 0.010085046728971963,
+        "powershell": 0.01691495327102804,
+        "prisma": 0,
+        "procfile": 0.00529158878504673,
+        "protobuf": 0,
+        "puppet": 0,
+        "python": 0.1347943925233645,
+        "qml": 0,
+        "r": 0.004050467289719627,
+        "razor": 0,
+        "rss": 0,
+        "ruby": 0.013809345794392525,
+        "rust": 0.01042803738317757,
+        "scala": 0,
+        "shaderlab": 0.0028719626168224304,
+        "shell": 0.07609252336448599,
+        "smarty": 0.0025130841121495328,
+        "solidity": 0.0017401869158878507,
+        "starlark": 0.0015261682242990657,
+        "svelte": 0.009345794392523366,
+        "svg": 0,
+        "swift": 0.012392523364485984,
+        "systemverilog": 0,
+        "toml": 0,
+        "tsql": 0.0015728971962616824,
+        "typescript": 0.09142616822429908,
+        "vala": 0,
+        "vb": 0,
+        "vim-script": 0.002401869158878505,
+        "vue": 0.009345794392523366,
+        "webassembly": 0,
+        "wgsl": 0,
+        "xml": 0,
+        "xslt": 0.002529906542056075,
+        "yaml": 0,
+        "zig": 0
+      },
+      "protectedFamilies": [
+        "astro",
+        "batchfile",
+        "c",
+        "cmake",
+        "cpp",
+        "csharp",
+        "css",
+        "diff",
+        "dockerfile",
+        "go",
+        "html",
+        "java",
+        "javascript",
+        "kotlin",
+        "makefile",
+        "markdown",
+        "php",
+        "plpgsql",
+        "powershell",
+        "python",
+        "ruby",
+        "rust",
+        "shell",
+        "svelte",
+        "swift",
+        "typescript",
+        "vue"
+      ],
+      "strictLanguages": [
+        "css",
+        "html",
+        "javascript",
+        "python",
+        "tsx",
+        "typescript"
+      ],
+      "matureLanguages": [
+        "astro",
+        "c",
+        "cmake",
+        "cpp",
+        "csharp",
+        "diff",
+        "docker",
+        "go",
+        "java",
+        "jsx",
+        "kotlin",
+        "make",
+        "php",
+        "powershell",
+        "rust",
+        "shell",
+        "shellscript",
+        "svelte",
+        "swift"
+      ],
+      "minSupport": 100,
+      "minPlainSupport": 100,
+      "maxErrorIncrease": 0.01,
+      "maxFalseColorIncrease": 0.01,
+      "maxStrictErrorIncrease": 0.002,
+      "maxStrictFalseColorIncrease": 0.002,
+      "z": 1.96,
+      "minWeightedImprovement": 0,
+      "maxMatureErrorIncrease": 0.01,
+      "maxMatureFalseColorIncrease": 0.01
+    },
+    "provenance": {
+      "shardSha256": "6757c82f635faef58fa7b9526ed1a0d7531755079004c0d46d5fa193cc36e0d2",
+      "labelSource": "shiki-spans-v1",
+      "featureVersion": 3,
+      "tokenizerVersion": 2,
+      "maxTokens": null
+    }
+  },
+  "config": {
+    "languageObjective": {
+      "schemaVersion": 1,
+      "popularitySha256": "d263daa807ff1f884db97cfb99ed03619b5277090dd92b78c4f228ea838aa586",
+      "supplementalWeights": {
+        "html": 1,
+        "css": 1,
+        "markdown": 1,
+        "vue": 1,
+        "svelte": 1,
+        "astro": 1,
+        "diff": 1
+      },
+      "familyWeights": {
+        "actionscript": 0,
+        "ada": 0,
+        "apex": 0,
+        "assembly": 0.005332710280373833,
+        "astro": 0.009345794392523366,
+        "awk": 0.0015280373831775703,
+        "batchfile": 0.020597196261682247,
+        "bicep": 0,
+        "c": 0.029771028037383185,
+        "c3": 0,
+        "cmake": 0.01718224299065421,
+        "coffeescript": 0,
+        "cpp": 0.030985046728971965,
+        "csharp": 0.018519626168224303,
+        "css": 0.009345794392523366,
+        "cuda": 0.002146728971962617,
+        "cython": 0.0021065420560747667,
+        "d": 0,
+        "dart": 0.006877570093457945,
+        "diff": 0.009345794392523366,
+        "dockerfile": 0.05683644859813085,
+        "emacs-lisp": 0.0016121495327102804,
+        "fortran": 0.001783177570093458,
+        "gdscript": 0,
+        "gherkin": 0.001579439252336449,
+        "glsl": 0.002970093457943926,
+        "go": 0.012914018691588786,
+        "graphql": 0,
+        "groovy": 0,
+        "hack": 0.0036719626168224308,
+        "haskell": 0,
+        "haxe": 0,
+        "hcl": 0.00517196261682243,
+        "hlsl": 0.0033579439252336453,
+        "html": 0.009345794392523366,
+        "java": 0.03525514018691589,
+        "javascript": 0.1857299065420561,
+        "json": 0,
+        "julia": 0,
+        "kotlin": 0.014222429906542058,
+        "lua": 0.008194392523364487,
+        "m4": 0.001863551401869159,
+        "makefile": 0.02703457943925234,
+        "mako": 0.003499065420560748,
+        "markdown": 0.009345794392523366,
+        "matlab": 0.002340186915887851,
+        "meson": 0.0018214953271028038,
+        "nginx": 0,
+        "nim": 0,
+        "nix": 0.005128037383177571,
+        "objective-c": 0.009062616822429908,
+        "objective-cpp": 0.0021626168224299067,
+        "odin": 0,
+        "perl": 0.0045420560747663555,
+        "php": 0.018338317757009347,
+        "plist": 0,
+        "plpgsql": 0.010085046728971963,
+        "powershell": 0.01691495327102804,
+        "prisma": 0,
+        "procfile": 0.00529158878504673,
+        "protobuf": 0,
+        "puppet": 0,
+        "python": 0.1347943925233645,
+        "qml": 0,
+        "r": 0.004050467289719627,
+        "razor": 0,
+        "rss": 0,
+        "ruby": 0.013809345794392525,
+        "rust": 0.01042803738317757,
+        "scala": 0,
+        "shaderlab": 0.0028719626168224304,
+        "shell": 0.07609252336448599,
+        "smarty": 0.0025130841121495328,
+        "solidity": 0.0017401869158878507,
+        "starlark": 0.0015261682242990657,
+        "svelte": 0.009345794392523366,
+        "svg": 0,
+        "swift": 0.012392523364485984,
+        "systemverilog": 0,
+        "toml": 0,
+        "tsql": 0.0015728971962616824,
+        "typescript": 0.09142616822429908,
+        "vala": 0,
+        "vb": 0,
+        "vim-script": 0.002401869158878505,
+        "vue": 0.009345794392523366,
+        "webassembly": 0,
+        "wgsl": 0,
+        "xml": 0,
+        "xslt": 0.002529906542056075,
+        "yaml": 0,
+        "zig": 0
+      },
+      "protectedFamilies": [
+        "astro",
+        "batchfile",
+        "c",
+        "cmake",
+        "cpp",
+        "csharp",
+        "css",
+        "diff",
+        "dockerfile",
+        "go",
+        "html",
+        "java",
+        "javascript",
+        "kotlin",
+        "makefile",
+        "markdown",
+        "php",
+        "plpgsql",
+        "powershell",
+        "python",
+        "ruby",
+        "rust",
+        "shell",
+        "svelte",
+        "swift",
+        "typescript",
+        "vue"
+      ],
+      "strictLanguages": [
+        "css",
+        "html",
+        "javascript",
+        "python",
+        "tsx",
+        "typescript"
+      ],
+      "matureLanguages": [
+        "astro",
+        "c",
+        "cmake",
+        "cpp",
+        "csharp",
+        "diff",
+        "docker",
+        "go",
+        "java",
+        "jsx",
+        "kotlin",
+        "make",
+        "php",
+        "powershell",
+        "rust",
+        "shell",
+        "shellscript",
+        "svelte",
+        "swift"
+      ],
+      "minSupport": 100,
+      "minPlainSupport": 100,
+      "maxErrorIncrease": 0.01,
+      "maxFalseColorIncrease": 0.01,
+      "maxStrictErrorIncrease": 0.002,
+      "maxStrictFalseColorIncrease": 0.002,
+      "z": 1.96,
+      "minWeightedImprovement": 0,
+      "maxMatureErrorIncrease": 0.01,
+      "maxMatureFalseColorIncrease": 0.01
+    },
+    "languageGuards": "advisory",
+    "classWeightPower": 0,
+    "agreementEpochs": 48,
+    "calibrationEpochs": 0,
+    "selectionMetric": "accuracy",
+    "model": "hierarchical-tree",
+    "polishMode": true,
+    "taxonomyVersion": 5,
+    "epochs": 48,
+    "fineTuneEpochs": 0,
+    "headTuneEpochs": 0,
+    "stagedFineTune": false,
+    "treeContext": "hybrid",
+    "localRadius": 2,
+    "labelSource": "shiki-spans-v1",
+    "precision": "int6",
+    "hiddenSize": 32,
+    "classifierSize": 176,
+    "weightBits": 6,
+    "hashBuckets": 256,
+    "batchTokens": 65536,
+    "learningRate": 0.000001,
+    "finalLearningRate": 2e-7,
+    "fineTuneLearningRate": 0.00005,
+    "fineTuneFinalLearningRate": 0.00001,
+    "agreementLearningRate": 0.0064,
+    "agreementFinalLearningRate": 0.00001,
+    "calibrationLearningRate": 0.000001,
+    "calibrationFinalLearningRate": 2e-7,
+    "scanFineTuneLearningRate": 0.00001,
+    "scanFineTuneFinalLearningRate": 0.000002,
+    "gradientClip": 1,
+    "patience": 48,
+    "minDelta": 0,
+    "seed": 1337,
+    "progressEvery": 1000,
+    "replayFraction": 0,
+    "repeatHardReplay": false,
+    "maxHardReplayRepeats": null,
+    "focusedReplay": false,
+    "focusedReplaySteps": 1,
+    "focusedReplayLearningRate": 0.001,
+    "focusedReplayFinalLearningRate": 0.0005,
+    "boundaryLossMultiplier": 1.25,
+    "mixedF1Tolerance": 0.005,
+    "qatEpochs": 48,
+    "emaDecay": 0.99,
+    "topLanguageLossShare": 0.5,
+    "emaStartEpoch": 1,
+    "distillationWeight": 0,
+    "distillationTemperature": 1,
+    "distillationWarmupEpochs": 0,
+    "distillationRampEpochs": 1,
+    "featureVersion": 3,
+    "scaleBuckets": 12,
+    "inputSize": 755,
+    "maxTrainTokens": null,
+    "maxVerificationTokens": null,
+    "teacherMode": false,
+    "excludedFamilies": [
+      "lisp"
+    ],
+    "initialIsBaseline": true,
+    "selectionGuard": {
+      "topFamilies": {
+        "javascript": 0.21395303846631972,
+        "python": 0.1552774953344903,
+        "typescript": 0.10531892664749452,
+        "shell": 0.08765498012695022,
+        "dockerfile": 0.06547284784827336,
+        "java": 0.04061281313892167,
+        "cpp": 0.03569342566489417,
+        "c": 0.034294471781931866,
+        "makefile": 0.031142744759307308,
+        "batchfile": 0.023726785334410964,
+        "php": 0.021125359855419266,
+        "csharp": 0.021333668864623328,
+        "powershell": 0.019485337320412355,
+        "cmake": 0.01979339887529005,
+        "kotlin": 0.016384128916562664,
+        "ruby": 0.015908037221302157,
+        "swift": 0.014275647267441486,
+        "go": 0.014876278504573313,
+        "plpgsql": 0.01161758199073586,
+        "rust": 0.012012586957581364,
+        "objective-c": 0.010439632895517898,
+        "lua": 0.009439651410194937,
+        "dart": 0.007922354734410737,
+        "procfile": 0.006095976307259001,
+        "assembly": 0.006142829775681463
+      },
+      "minLanguageSupport": 400,
+      "minEffectiveFiles": 3,
+      "languageDropTolerance": 0.05,
+      "baselineLanguageAccuracy": {
+        "tsx": 0.9826034793041392,
+        "javascript": 0.9791599091793708,
+        "python": 0.9712433278372411,
+        "typescript": 0.9618359112306658,
+        "shell": 0.9135676338373518,
+        "docker": 0.9283561326223047,
+        "java": 0.92980754885872,
+        "cpp": 0.9112281603288798,
+        "c": 0.9520185060816357,
+        "make": 0.9076966239595997,
+        "bat": 0.8178518043988896,
+        "php": 0.9190107114865453,
+        "csharp": 0.9113118279569893,
+        "cmake": 0.9572515296841408,
+        "kotlin": 0.9029150197628458,
+        "ruby": 0.8525506638714186,
+        "swift": 0.9158265170249191,
+        "go": 0.9518942101501072,
+        "rust": 0.9479220443985544,
+        "lua": 0.6987179487179487,
+        "hlsl": 0.8896730181133851,
+        "emacs-lisp": 0.5980975029726516,
+        "html": 0.9502586911137333,
+        "css": 0.9501649885777138,
+        "vue": 0.8515616254337848,
+        "svelte": 0.9686084142394822,
+        "astro": 0.960623958806603,
+        "sql": 0.6840458811261731,
+        "markdown": 0.8041254983532675,
+        "xml": 0.9322371699053313
+      }
+    },
+    "trainingLanguageMultipliers": {}
+  },
+  "checkpointRole": "promoted-continuation-baseline"
+}

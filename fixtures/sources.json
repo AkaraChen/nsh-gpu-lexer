@@ -1,0 +1,185 @@
+{
+  "note": "Verification sources of upstream gpu-lexer (apps/website/app/demo.tsx, reserved from training), pinned by version or commit, permissive licenses only. Each file keeps its own license and copyright; see fixtures/README.md.",
+  "files": [
+    {
+      "name": "three.min.js",
+      "url": "https://unpkg.com/three@0.97.0/build/three.min.js",
+      "license": "MIT",
+      "sha256": "3ed7c9316c0724813330f2720111f295827ac22a04da471f167c0fa06b9f28e5"
+    },
+    {
+      "name": "react.development.js",
+      "url": "https://unpkg.com/react@19.2.8/cjs/react.development.js",
+      "license": "MIT",
+      "sha256": "e7a035fea0b35de567a563966fdb5e05c01f01f8ff776770d3a44794990ba3d7"
+    },
+    {
+      "name": "lodash.js",
+      "url": "https://unpkg.com/lodash@4.17.21/lodash.js",
+      "license": "MIT",
+      "sha256": "4c04561befdf653aef017a42ac5addf68ea943cdfca6bdee5ce04e04e8139f54"
+    },
+    {
+      "name": "vite-react-App.jsx",
+      "url": "https://raw.githubusercontent.com/vitejs/vite/f40efefbb3630cdb7235286bc2b51673d9fbfc27/packages/create-vite/template-react/src/App.jsx",
+      "license": "MIT",
+      "sha256": "3226560e76fae0a061d973aee04d87fc5e3f4c4b41d94777ab622c4b19aa4067"
+    },
+    {
+      "name": "vite-ssr-root.tsx",
+      "url": "https://raw.githubusercontent.com/vitejs/vite/f40efefbb3630cdb7235286bc2b51673d9fbfc27/playground/environment-react-ssr/src/root.tsx",
+      "license": "MIT",
+      "sha256": "243592f747b2ac3b2c0683259de2e056e193f59529269ded53d0716a3e29c14f"
+    },
+    {
+      "name": "vite-solid-App.tsx",
+      "url": "https://raw.githubusercontent.com/vitejs/vite/f40efefbb3630cdb7235286bc2b51673d9fbfc27/packages/create-vite/template-solid-ts/src/App.tsx",
+      "license": "MIT",
+      "sha256": "d385947e6d1ca59ff3556e92c614d1a3e4cd2024839cabf0dc59c102002c9b70"
+    },
+    {
+      "name": "vite-svelte-App.svelte",
+      "url": "https://raw.githubusercontent.com/vitejs/vite/f40efefbb3630cdb7235286bc2b51673d9fbfc27/packages/create-vite/template-svelte/src/App.svelte",
+      "license": "MIT",
+      "sha256": "c48758a2850311620583fe34a51457c8760576901fb9b72d7dd09fba05852844"
+    },
+    {
+      "name": "vitepress-VPHero.vue",
+      "url": "https://raw.githubusercontent.com/vuejs/vitepress/09f9672ee108578808f793bb57e306bc92dff7bc/src/client/theme-default/components/VPHero.vue",
+      "license": "MIT",
+      "sha256": "36d7396a4ad1fee14d64e87b37a7cb1a2672f5c44041d7ff661e150793dbd790"
+    },
+    {
+      "name": "pydantic-main.py",
+      "url": "https://raw.githubusercontent.com/pydantic/pydantic/v2.11.7/pydantic/main.py",
+      "license": "MIT",
+      "sha256": "bfaedae3e9c5a280be189d681e04bffd59b7f7d620a7f347fb55b31d7c2314cd"
+    },
+    {
+      "name": "normalize.css",
+      "url": "https://unpkg.com/normalize.css@8.0.1/normalize.css",
+      "license": "MIT",
+      "sha256": "580818700724d42d7fcc4979b0197971fca1c6d2e0286769237a0ac897df5512"
+    },
+    {
+      "name": "bootstrap-_variables.scss",
+      "url": "https://raw.githubusercontent.com/twbs/bootstrap/12cb8b902d175a0d612f1280f58b386a09921a16/scss/_variables.scss",
+      "license": "MIT",
+      "sha256": "b747baa51f23e4ab92ae865084e52f0b88de6587aa30ffd7ec3564291dc9dcee"
+    },
+    {
+      "name": "html5-boilerplate-index.html",
+      "url": "https://unpkg.com/html5-boilerplate@9.0.1/dist/index.html",
+      "license": "MIT",
+      "sha256": "c2186b70cde567a6d9f41f7d3040fc413a35f63c4f467827f2be61059057ae12"
+    },
+    {
+      "name": "gin.go",
+      "url": "https://raw.githubusercontent.com/gin-gonic/gin/v1.11.0/gin.go",
+      "license": "MIT",
+      "sha256": "9376d5f6a914bb5e0bd498bd86f8076a3cb922265b9b367e2ca11b7845dcc650"
+    },
+    {
+      "name": "client_golang-counter.go",
+      "url": "https://raw.githubusercontent.com/prometheus/client_golang/v1.19.1/prometheus/counter.go",
+      "license": "Apache-2.0",
+      "sha256": "20edea218413b73756d45260b04cc9fe9821677f8573af39c78d556d76a53f01"
+    },
+    {
+      "name": "tokio-worker.rs",
+      "url": "https://raw.githubusercontent.com/tokio-rs/tokio/tokio-1.47.1/tokio/src/runtime/scheduler/multi_thread/worker.rs",
+      "license": "MIT",
+      "sha256": "4165838b231361ad434604fa2ea661618d3ede2250a7db8ed1be1176926ba858"
+    },
+    {
+      "name": "axum-hello-world.rs",
+      "url": "https://raw.githubusercontent.com/tokio-rs/axum/axum-v0.8.4/examples/hello-world/src/main.rs",
+      "license": "MIT",
+      "sha256": "430ff7d135f9f968f94c932bd18c7319bbc26c3c305ce61b7d9b27a5fb02ba79"
+    },
+    {
+      "name": "ripgrep-main.rs",
+      "url": "https://raw.githubusercontent.com/BurntSushi/ripgrep/14.1.1/crates/core/main.rs",
+      "license": "MIT OR Unlicense",
+      "sha256": "dc3f8c2e868d3b852b5cf34a16ff6fbf181b30f6bb7b67ba3051400152d59136"
+    },
+    {
+      "name": "rails-base.rb",
+      "url": "https://raw.githubusercontent.com/rails/rails/v8.0.2/activerecord/lib/active_record/base.rb",
+      "license": "MIT",
+      "sha256": "6e514c0ae5b40b9578d7b8b2b6586c08f1327517c4e6ff7a6b795e7f685d915b"
+    },
+    {
+      "name": "react-README.md",
+      "url": "https://raw.githubusercontent.com/facebook/react/v19.2.0/README.md",
+      "license": "MIT",
+      "sha256": "4d20edc8d043718c1459dd5d5e25777a282cc09092ecab0f9cc7559f0eac9842"
+    },
+    {
+      "name": "react-fixture-index.html",
+      "url": "https://raw.githubusercontent.com/facebook/react/v19.2.0/fixtures/dom/public/index.html",
+      "license": "MIT",
+      "sha256": "5d107389606aa21cdbc5cbdf244d011ba7ee8c002086f3f481fcf6ed2e556f17"
+    },
+    {
+      "name": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/Kitware/CMake/06675ff22831820a1bd7463643505728cc3d1441/CMakeLists.txt",
+      "license": "BSD-3-Clause",
+      "sha256": "22c611bf95fe61441b144daf0efc6035de854af7c4f2b85b24f5ec61af3ee099"
+    },
+    {
+      "name": "nvm-install.sh",
+      "url": "https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh",
+      "license": "MIT",
+      "sha256": "2d8359a64a3cb07c02389ad88ceecd43f2fa469c06104f92f98df5b6f315275f"
+    },
+    {
+      "name": "install-powershell.ps1",
+      "url": "https://raw.githubusercontent.com/PowerShell/PowerShell/6ca24ccf024140ca061580c43751db27605c4815/tools/install-powershell.ps1",
+      "license": "MIT",
+      "sha256": "e84ea7b8c429c1d474664f5601f23f88201b21152a32f0a47906866da290273c"
+    },
+    {
+      "name": "raytracer.wgsl",
+      "url": "https://raw.githubusercontent.com/webgpu/webgpu-samples/4944c705dcbf34c6d9d7ea88cf0a61586e0ce93b/sample/cornell/raytracer.wgsl",
+      "license": "BSD-3-Clause",
+      "sha256": "5394d1c7056451dec2385dd8ebd00141cc4e1e0e4398294db974b32e3333a6fe"
+    },
+    {
+      "name": "kitchen-sink.graphql",
+      "url": "https://raw.githubusercontent.com/graphql/graphql-js/3b9d3d4bc1d8c384569e002b51b92119aa1c4500/benchmark/kitchen-sink.graphql",
+      "license": "MIT",
+      "sha256": "c831a7fa6e8ea5360370b7db4e39b726d2689559f06ee20228362c0486a5fb2d"
+    },
+    {
+      "name": "uv-pyproject.toml",
+      "url": "https://raw.githubusercontent.com/astral-sh/uv/e664f77154c770ebb62ff494331553379514997a/pyproject.toml",
+      "license": "MIT OR Apache-2.0",
+      "sha256": "675a2dfbe3b5db721ffd160e9dfa316f7c3404a149c2d0b34df9bd213959c78b"
+    },
+    {
+      "name": "nim-json.nim",
+      "url": "https://raw.githubusercontent.com/nim-lang/Nim/2e93d83149fe99f75820b4fe6e78e09d145f726a/lib/pure/json.nim",
+      "license": "MIT",
+      "sha256": "c85f7768a3cb4a0568e4f7c0784ab12ca686f9e9db3caec364530c93b81ecbbb"
+    },
+    {
+      "name": "coffeescript.coffee",
+      "url": "https://raw.githubusercontent.com/jashkenas/coffeescript/817c39a13065a900725943c33a79252a69d779e2/src/coffeescript.coffee",
+      "license": "MIT",
+      "sha256": "ce834ecd8afc2bcef955f8cd0148306559ea3b534d4c1d277240dcc30c03c553"
+    },
+    {
+      "name": "wasmtime-simd.wat",
+      "url": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/668016926adfd1b8a79dbce894f1e203d8892599/tests/disas/simd.wat",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "sha256": "bf0f6c233133d56ca0bf5d9d32ccc5e3456ae99af45004f28f088f3a0eb23d46"
+    },
+    {
+      "name": "haxe-JsonParser.hx",
+      "url": "https://raw.githubusercontent.com/HaxeFoundation/haxe/8768985fe44185a7d66162b06f15c5aff5498f60/std/haxe/format/JsonParser.hx",
+      "license": "MIT",
+      "sha256": "c667411d9f4ff5e92738995c5acd1d73fe03851fb11d5099a9bc449e305f81a3"
+    }
+  ]
+}

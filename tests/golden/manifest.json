@@ -1,0 +1,330 @@
+{
+  "upstreamCommit": "676026856660a22567345014835867a9dfe3fbdb",
+  "runId": "20261117T071411.182Z",
+  "files": [
+    {
+      "name": "three.min.js",
+      "synthetic": false,
+      "sourceSha256": "3ed7c9316c0724813330f2720111f295827ac22a04da471f167c0fa06b9f28e5",
+      "utf16Length": 555650,
+      "parts": 248387,
+      "spans": 168813,
+      "spansSha256": "dc77bc9446aecf7d5bb539a6aa8503b08a3325a6ecfda67daf10e86295306d4b"
+    },
+    {
+      "name": "react.development.js",
+      "synthetic": false,
+      "sourceSha256": "e7a035fea0b35de567a563966fdb5e05c01f01f8ff776770d3a44794990ba3d7",
+      "utf16Length": 47219,
+      "parts": 14225,
+      "spans": 8937,
+      "spansSha256": "475458c6c8d86d4ab456dfeaf8b37158df45a100855867da09fdb8d38425e206"
+    },
+    {
+      "name": "lodash.js",
+      "synthetic": false,
+      "sourceSha256": "4c04561befdf653aef017a42ac5addf68ea943cdfca6bdee5ce04e04e8139f54",
+      "utf16Length": 544096,
+      "parts": 223612,
+      "spans": 141932,
+      "spansSha256": "df35c6c3ada6a56a1eede814651e776dda426a8c4998da6073dc269ec12eadc4"
+    },
+    {
+      "name": "vite-react-App.jsx",
+      "synthetic": false,
+      "sourceSha256": "3226560e76fae0a061d973aee04d87fc5e3f4c4b41d94777ab622c4b19aa4067",
+      "utf16Length": 3646,
+      "parts": 1234,
+      "spans": 645,
+      "spansSha256": "2c3c06d5bf57a9de4324e95b8ea4fd7554b203f9e5d202005356e65d0900a0f0"
+    },
+    {
+      "name": "vite-ssr-root.tsx",
+      "synthetic": false,
+      "sourceSha256": "243592f747b2ac3b2c0683259de2e056e193f59529269ded53d0716a3e29c14f",
+      "utf16Length": 467,
+      "parts": 218,
+      "spans": 144,
+      "spansSha256": "aafd9931ee9fb734fee02f1b35a71bfc096caf6ec7ad08bf9ddde698b03f0bd8"
+    },
+    {
+      "name": "vite-solid-App.tsx",
+      "synthetic": false,
+      "sourceSha256": "d385947e6d1ca59ff3556e92c614d1a3e4cd2024839cabf0dc59c102002c9b70",
+      "utf16Length": 3317,
+      "parts": 1218,
+      "spans": 641,
+      "spansSha256": "48e26d34ac273b611c4ab07dd1d56a1a763c2fe9318caca9cf3928fe4a9ddf93"
+    },
+    {
+      "name": "vite-svelte-App.svelte",
+      "synthetic": false,
+      "sourceSha256": "c48758a2850311620583fe34a51457c8760576901fb9b72d7dd09fba05852844",
+      "utf16Length": 2665,
+      "parts": 1136,
+      "spans": 596,
+      "spansSha256": "5958f0463af9da2f51c37b8682d319b99571e091de7ef1ab3052a25881f360fd"
+    },
+    {
+      "name": "vitepress-VPHero.vue",
+      "synthetic": false,
+      "sourceSha256": "36d7396a4ad1fee14d64e87b37a7cb1a2672f5c44041d7ff661e150793dbd790",
+      "utf16Length": 6471,
+      "parts": 2921,
+      "spans": 1836,
+      "spansSha256": "99e90e782d842927fe7ce6a5fb1ddddd6e32e40d94202f539c8f4825b5dad976"
+    },
+    {
+      "name": "pydantic-main.py",
+      "synthetic": false,
+      "sourceSha256": "bfaedae3e9c5a280be189d681e04bffd59b7f7d620a7f347fb55b31d7c2314cd",
+      "utf16Length": 81008,
+      "parts": 24273,
+      "spans": 17557,
+      "spansSha256": "9966f7d658793b068034aef667bcc2a3d9e22b6818b39be061526ac53dc28d71"
+    },
+    {
+      "name": "normalize.css",
+      "synthetic": false,
+      "sourceSha256": "580818700724d42d7fcc4979b0197971fca1c6d2e0286769237a0ac897df5512",
+      "utf16Length": 6138,
+      "parts": 3355,
+      "spans": 2039,
+      "spansSha256": "cffce66f6966d3938c2111466930cb17a9115e046c096a1f88443c36fc4e307c"
+    },
+    {
+      "name": "bootstrap-_variables.scss",
+      "synthetic": false,
+      "sourceSha256": "b747baa51f23e4ab92ae865084e52f0b88de6587aa30ffd7ec3564291dc9dcee",
+      "utf16Length": 76515,
+      "parts": 28894,
+      "spans": 17143,
+      "spansSha256": "fdcd3c79623ab9b64fd1f9c3cd66e55906022411e8913e09ab0edeabbf72c34f"
+    },
+    {
+      "name": "html5-boilerplate-index.html",
+      "synthetic": false,
+      "sourceSha256": "c2186b70cde567a6d9f41f7d3040fc413a35f63c4f467827f2be61059057ae12",
+      "utf16Length": 882,
+      "parts": 417,
+      "spans": 222,
+      "spansSha256": "a04640f562b9b205cdb57cbd1f20e3b6a636ad5f0af4c7a51d65425be1be12b7"
+    },
+    {
+      "name": "gin.go",
+      "synthetic": false,
+      "sourceSha256": "9376d5f6a914bb5e0bd498bd86f8076a3cb922265b9b367e2ca11b7845dcc650",
+      "utf16Length": 25950,
+      "parts": 10099,
+      "spans": 7242,
+      "spansSha256": "9f85297cead08c7ac5d95f034c2de0bf88e2357ac8365c11e959aa7f993d3547"
+    },
+    {
+      "name": "client_golang-counter.go",
+      "synthetic": false,
+      "sourceSha256": "20edea218413b73756d45260b04cc9fe9821677f8573af39c78d556d76a53f01",
+      "utf16Length": 12805,
+      "parts": 5048,
+      "spans": 4059,
+      "spansSha256": "97bc0223b8667f2a2a46e2a2164083613df9c89ddad29ebfea6a76bd7c3ea8e0"
+    },
+    {
+      "name": "tokio-worker.rs",
+      "synthetic": false,
+      "sourceSha256": "4165838b231361ad434604fa2ea661618d3ede2250a7db8ed1be1176926ba858",
+      "utf16Length": 42617,
+      "parts": 14826,
+      "spans": 11113,
+      "spansSha256": "9befd24372a7c6e9a6a65fe70cfbafdd80a9b711cd154d7a7ec5f6a0fd9a2992"
+    },
+    {
+      "name": "axum-hello-world.rs",
+      "synthetic": false,
+      "sourceSha256": "430ff7d135f9f968f94c932bd18c7319bbc26c3c305ce61b7d9b27a5fb02ba79",
+      "utf16Length": 570,
+      "parts": 274,
+      "spans": 171,
+      "spansSha256": "33aeed4876adf2595dc30a72cc2b540136503501cb76d1ff041797b6ed0eb155"
+    },
+    {
+      "name": "ripgrep-main.rs",
+      "synthetic": false,
+      "sourceSha256": "dc3f8c2e868d3b852b5cf34a16ff6fbf181b30f6bb7b67ba3051400152d59136",
+      "utf16Length": 18464,
+      "parts": 6719,
+      "spans": 4845,
+      "spansSha256": "6e29699e1bce153688efd32d9d34c6c9beef039fa9270bd484dc828340c17a76"
+    },
+    {
+      "name": "rails-base.rb",
+      "synthetic": false,
+      "sourceSha256": "6e514c0ae5b40b9578d7b8b2b6586c08f1327517c4e6ff7a6b795e7f685d915b",
+      "utf16Length": 14858,
+      "parts": 5331,
+      "spans": 3890,
+      "spansSha256": "b5f1f747f89f4a3ffcd23bb5e5714acbc0c17e594e3632023f93933057b7cbf9"
+    },
+    {
+      "name": "react-README.md",
+      "synthetic": false,
+      "sourceSha256": "4d20edc8d043718c1459dd5d5e25777a282cc09092ecab0f9cc7559f0eac9842",
+      "utf16Length": 5317,
+      "parts": 2057,
+      "spans": 468,
+      "spansSha256": "73924bd971784db9a4cef824c547cbca7666676ab9a9397012071f9c2cab78bb"
+    },
+    {
+      "name": "react-fixture-index.html",
+      "synthetic": false,
+      "sourceSha256": "5d107389606aa21cdbc5cbdf244d011ba7ee8c002086f3f481fcf6ed2e556f17",
+      "utf16Length": 1293,
+      "parts": 550,
+      "spans": 354,
+      "spansSha256": "45450385ec271f97c25a9568213046e15eb22261ab8b043626ba480a85ee7fbd"
+    },
+    {
+      "name": "CMakeLists.txt",
+      "synthetic": false,
+      "sourceSha256": "22c611bf95fe61441b144daf0efc6035de854af7c4f2b85b24f5ec61af3ee099",
+      "utf16Length": 23670,
+      "parts": 7188,
+      "spans": 3180,
+      "spansSha256": "7db83bc27608ccc250c05c8d62075268076268ad06630fd4996c9ebdca60da1c"
+    },
+    {
+      "name": "nvm-install.sh",
+      "synthetic": false,
+      "sourceSha256": "2d8359a64a3cb07c02389ad88ceecd43f2fa469c06104f92f98df5b6f315275f",
+      "utf16Length": 16631,
+      "parts": 6710,
+      "spans": 4048,
+      "spansSha256": "d982c8e2f3436bc833784822baef0afee538c35728834e4066c67a15e14e2837"
+    },
+    {
+      "name": "install-powershell.ps1",
+      "synthetic": false,
+      "sourceSha256": "e84ea7b8c429c1d474664f5601f23f88201b21152a32f0a47906866da290273c",
+      "utf16Length": 16953,
+      "parts": 5444,
+      "spans": 3654,
+      "spansSha256": "3c067f4f4c25008c71c7f9cdfd84b711398230fd38cef1d80e29bc292ebe15c9"
+    },
+    {
+      "name": "raytracer.wgsl",
+      "synthetic": false,
+      "sourceSha256": "5394d1c7056451dec2385dd8ebd00141cc4e1e0e4398294db974b32e3333a6fe",
+      "utf16Length": 2289,
+      "parts": 891,
+      "spans": 674,
+      "spansSha256": "652a8d6b6cd2faade86b8801d4d5f6a114584213c29efbf8878b587387cbee40"
+    },
+    {
+      "name": "kitchen-sink.graphql",
+      "synthetic": false,
+      "sourceSha256": "c831a7fa6e8ea5360370b7db4e39b726d2689559f06ee20228362c0486a5fb2d",
+      "utf16Length": 1024,
+      "parts": 395,
+      "spans": 152,
+      "spansSha256": "f0b5063c2ada6fd994f6108f990d90474d30469b55dbc47ad52ec0a34507432d"
+    },
+    {
+      "name": "uv-pyproject.toml",
+      "synthetic": false,
+      "sourceSha256": "675a2dfbe3b5db721ffd160e9dfa316f7c3404a149c2d0b34df9bd213959c78b",
+      "utf16Length": 4772,
+      "parts": 2119,
+      "spans": 995,
+      "spansSha256": "48835e55ca5cb0d7c59be8096e533cf0a0ebc3abfef25a9290a24f208053025c"
+    },
+    {
+      "name": "nim-json.nim",
+      "synthetic": false,
+      "sourceSha256": "c85f7768a3cb4a0568e4f7c0784ab12ca686f9e9db3caec364530c93b81ecbbb",
+      "utf16Length": 46572,
+      "parts": 19726,
+      "spans": 12503,
+      "spansSha256": "6a2cf070232787b2cd53973b196ef5061e0540911b3685866b52ef527357ac7f"
+    },
+    {
+      "name": "coffeescript.coffee",
+      "synthetic": false,
+      "sourceSha256": "ce834ecd8afc2bcef955f8cd0148306559ea3b534d4c1d277240dcc30c03c553",
+      "utf16Length": 12936,
+      "parts": 4742,
+      "spans": 3169,
+      "spansSha256": "32603ac1bb994819e64ec815078b4e7fad9b4d3a15db9babc80e8fa343cb41da"
+    },
+    {
+      "name": "wasmtime-simd.wat",
+      "synthetic": false,
+      "sourceSha256": "bf0f6c233133d56ca0bf5d9d32ccc5e3456ae99af45004f28f088f3a0eb23d46",
+      "utf16Length": 3650,
+      "parts": 1227,
+      "spans": 900,
+      "spansSha256": "7e3ff2a03efbab3a0d89039a39d5ccab2f05aa47b776f973e8c71c152428bab3"
+    },
+    {
+      "name": "haxe-JsonParser.hx",
+      "synthetic": false,
+      "sourceSha256": "c667411d9f4ff5e92738995c5acd1d73fe03851fb11d5099a9bc449e305f81a3",
+      "utf16Length": 8452,
+      "parts": 3909,
+      "spans": 2721,
+      "spansSha256": "bdc0ac9f3e5505799e86db647f0620615fbc05ed724ec4c51e97eb044465c98f"
+    },
+    {
+      "name": "synthetic-crlf.txt",
+      "synthetic": true,
+      "sourceSha256": "f0d8c63fee45bdfa442d65ec89540ca32059ee47cebb54b5984fa4c1130ca173",
+      "utf16Length": 45,
+      "parts": 32,
+      "spans": 18,
+      "spansSha256": "31454b624d7e41476f790bc520421578db71a0a37a0228347212b4e19dd4c19a"
+    },
+    {
+      "name": "synthetic-unicode.txt",
+      "synthetic": true,
+      "sourceSha256": "d32da9a80585772797a7f3f7169df491e2ad676463764550472cb723e2e18ccf",
+      "utf16Length": 56,
+      "parts": 37,
+      "spans": 26,
+      "spansSha256": "fc2fd7c2a83f34d4360cdd52721bc0fb99ad958d4d35f09d9b86fdaa05e5fda3"
+    },
+    {
+      "name": "synthetic-long-word.txt",
+      "synthetic": true,
+      "sourceSha256": "d689a463b26336cb6f6ef1be7f1f327dffd3c8df1d5ad236077eb3a8d9da8bff",
+      "utf16Length": 657,
+      "parts": 10,
+      "spans": 6,
+      "spansSha256": "0847fe01fc45cda5a51a0dd6f322e4da1e2ff4a6c92204581b00362c6a872890"
+    },
+    {
+      "name": "synthetic-one-char.txt",
+      "synthetic": true,
+      "sourceSha256": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "utf16Length": 1,
+      "parts": 1,
+      "spans": 1,
+      "spansSha256": "f9d210be56f5dab18e70e3a5771c0e047210252aa8d34d4cb1807e6db4adef3d"
+    },
+    {
+      "name": "synthetic-symbols.txt",
+      "synthetic": true,
+      "sourceSha256": "6c3231acad069586689c24528bd8249b8c9237c04e20814dc7df0fcd1de35480",
+      "utf16Length": 46,
+      "parts": 46,
+      "spans": 3,
+      "spansSha256": "14204ac13fd01e4b4cb484fde2effd46daa1e7e5d8cc2252082761fee90cd0e2"
+    },
+    {
+      "name": "synthetic-nesting.txt",
+      "synthetic": true,
+      "sourceSha256": "e51b566d511431057f539e9a2e4546096e8c9a6b00920dd88f54e1f0981dac57",
+      "utf16Length": 246,
+      "parts": 246,
+      "spans": 91,
+      "spansSha256": "7a66dfb02a370f5d8a2604cd9bc5dbc4ff923a2fb773250f1b1b6c2c7fde94af"
+    }
+  ]
+}

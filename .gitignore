@@ -1,0 +1,6 @@
+/target
+/.upstream
+/examples/*/.nsh
+/examples/*/target
+/report
+Cargo.lock.bak

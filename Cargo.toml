@@ -1,0 +1,63 @@
+[package]
+name = "nsh-gpu-lexer"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+description = "gpu-lexer for Native Shell: a tiny learned, language-agnostic syntax highlighter on CPU, wgpu and WebGPU, for Rust and TSX"
+license = "MIT"
+repository = "https://github.com/AkaraChen/nsh-gpu-lexer"
+readme = "README.md"
+keywords = ["nshm", "syntax-highlighting", "lexer", "webgpu", "nsh"]
+categories = ["text-processing", "gui"]
+include = [
+    "/src/**",
+    "/model/**",
+    "/js/**",
+    "/tsx/**",
+    "/nsh.json",
+    "/build.rs",
+    "/README.md",
+    "/LICENSE",
+    "/NOTICE",
+]
+
+[features]
+default = ["cpu", "parallel", "nsh"]
+# The CPU backend. It is always compiled (it is the fallback of every other
+# backend); the feature exists to name it.
+cpu = []
+# Runs the CPU backend's passes on rayon's thread pool (ignored on wasm).
+parallel = ["dep:rayon"]
+# The wgpu compute backend (Vulkan, Metal, DX12) for large inputs.
+gpu = ["dep:wgpu", "dep:pollster", "dep:bytemuck"]
+# On wasm32: the published gpu-lexer package on the browser's WebGPU.
+web-gpu = ["dep:wasm-bindgen", "dep:wasm-bindgen-futures", "dep:js-sys"]
+# The Native Shell module: TSX's `GpuLexer`, Editor and TextView highlighters.
+nsh = ["dep:nsh-core", "dep:nsh-base"]
+
+[dependencies]
+libm = "0.2.16"
+nsh-core = { version = "0.6", optional = true }
+nsh-base = { version = "0.6", optional = true, default-features = false, features = ["editor"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+rayon = { version = "1.10", optional = true }
+wgpu = { version = "30", optional = true, default-features = false, features = ["std", "wgsl", "vulkan", "metal", "dx12", "gles"] }
+pollster = { version = "1", optional = true }
+bytemuck = { version = "1", optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = { version = "0.2", optional = true }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+js-sys = { version = "0.3", optional = true }
+
+[dev-dependencies]
+flate2 = "1"
+serde_json = "1"
+
+[profile.test]
+opt-level = 3
+
+[[bench]]
+name = "throughput"
+harness = false
