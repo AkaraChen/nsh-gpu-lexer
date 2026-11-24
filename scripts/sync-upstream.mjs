@@ -117,12 +117,28 @@ for (const tensor of tensors) {
 model += `\npub const TENSORS: [TensorSpec; ${tensors.length}] = [${tensors.map((t) => rustIdent(t.name)).join(", ")}];\n`;
 writeFileSync(join(root, "src/generated/model.rs"), model);
 
-// GPU artifacts: exactly what the npm package's runtime uploads and compiles.
+// The one change made to upstream's shader. `tree_down_classify` writes each
+// child's returned context over its upward state in workgroup memory while
+// the threads of partner channels (h ^ 1 << depth) may still be reading that
+// upward state. Where a block's 32 channels run as one lockstep SIMD group
+// (Apple GPUs) the race is benign; on 8- or 16-wide hardware (llvmpipe,
+// many Intel and mobile GPUs) it changed 0.8% of three.min.js's labels.
+// The fix computes a level's children first and writes them after a barrier,
+// which is what the JS reference computes.
+const DOWN_RACE = "{for(var Ba=rb;Ba<y;Ba+=2u){let E=Ba*2u;if (E>=Sd){continue;}let qc=q[(Qd+Ba)*32u+p];let Td=q[(Q+E)*32u+p];if (E+1u<Sd){let Ud=q[(Q+E+1u)*32u+p];let rc=p^(1u<<A);let Vd=q[(Qd+Ba)*32u+rc];let Wd=q[(Q+E)*32u+rc];let Xd=q[(Q+E+1u)*32u+rc];q[(Q+E)*32u+p]=Ha(qc,Td,Ud,Vd,Wd,Xd,p,A,false);q[(Q+E+1u)*32u+p]=Ha(qc,Ud,Td,Vd,Xd,Wd,p,A,true);} else{q[(Q+E)*32u+p]=qc;}}}workgroupBarrier();";
+const DOWN_FIXED = "{var nshL:array<f32,8>;var nshR:array<f32,8>;var nshK=0u;for(var Ba=rb;Ba<y;Ba+=2u){let E=Ba*2u;if (E>=Sd){continue;}let qc=q[(Qd+Ba)*32u+p];let Td=q[(Q+E)*32u+p];if (E+1u<Sd){let Ud=q[(Q+E+1u)*32u+p];let rc=p^(1u<<A);let Vd=q[(Qd+Ba)*32u+rc];let Wd=q[(Q+E)*32u+rc];let Xd=q[(Q+E+1u)*32u+rc];nshL[nshK]=Ha(qc,Td,Ud,Vd,Wd,Xd,p,A,false);nshR[nshK]=Ha(qc,Ud,Td,Vd,Xd,Wd,p,A,true);} else{nshL[nshK]=qc;}nshK+=1u;}workgroupBarrier();nshK=0u;for(var Ba=rb;Ba<y;Ba+=2u){let E=Ba*2u;if (E>=Sd){continue;}q[(Q+E)*32u+p]=nshL[nshK];if (E+1u<Sd){q[(Q+E+1u)*32u+p]=nshR[nshK];}nshK+=1u;}}workgroupBarrier();";
+const fixDownRace = (text, where) => {
+  const count = text.split(DOWN_RACE).length - 1;
+  if (count !== 1) throw new Error(`${where}: expected the in-block down pass once, found ${count}; review the patch`);
+  return text.replace(DOWN_RACE, DOWN_FIXED);
+};
+
+// GPU artifacts: what the npm package's runtime uploads and compiles.
 const runtimeModel = await import(pathToFileURL(join(upstream, "packages/core/src/model.runtime.generated.js")));
 const shaderModule = await import(pathToFileURL(join(upstream, "packages/core/src/shader.min.generated.js")));
 writeFileSync(join(root, "model/runtime-weights.txt"), runtimeModel.WEIGHTS);
-writeFileSync(join(root, "model/shader-f16.wgsl"), shaderModule.createPromotedShader(true) + "\n");
-writeFileSync(join(root, "model/shader-f32.wgsl"), shaderModule.createPromotedShader(false) + "\n");
+writeFileSync(join(root, "model/shader-f16.wgsl"), fixDownRace(shaderModule.createPromotedShader(true), "f16 shader") + "\n");
+writeFileSync(join(root, "model/shader-f32.wgsl"), fixDownRace(shaderModule.createPromotedShader(false), "f32 shader") + "\n");
 let runtime = generatedHeader("The runtime weights and shader the GPU backend uploads.");
 runtime += `pub const HIDDEN: usize = ${runtimeModel.HIDDEN_SIZE};\n`;
 runtime += `pub const WEIGHT_BITS: u32 = ${runtimeModel.WEIGHT_BITS};\n`;
@@ -139,8 +155,8 @@ runtime += "pub static SHADER_F16: &str = include_str!(\"../../model/shader-f16.
 runtime += "pub static SHADER_F32: &str = include_str!(\"../../model/shader-f32.wgsl\");\n";
 writeFileSync(join(root, "src/generated/runtime.rs"), runtime);
 
-// Web: the published bundle as is, with a bridge wasm-bindgen imports.
-const bundle = readFileSync(join(npmDir, "dist/index.js"), "utf8");
+// Web: the published bundle, with the same shader fix and a bridge wasm-bindgen imports.
+const bundle = fixDownRace(readFileSync(join(npmDir, "dist/index.js"), "utf8"), "npm bundle");
 const bridge = `
 // ---- nsh-gpu-lexer bridge (appended by scripts/sync-upstream.mjs) ----
 // gpu-lexer ${UPSTREAM_VERSION} (${UPSTREAM_NPM_INTEGRITY}), MIT, Copyright (c) 2026 Shu Ding.
@@ -164,7 +180,8 @@ export async function nshGpuLexerParse(code) {
 `;
 writeFileSync(join(root, "js/gpu-lexer.js"),
   `// gpu-lexer@${UPSTREAM_VERSION} dist/index.js, MIT License, Copyright (c) 2026 Shu Ding.\n` +
-  `// Vendored unchanged by scripts/sync-upstream.mjs; only the bridge at the end is ours.\n` +
+  `// Vendored by scripts/sync-upstream.mjs with one fix to its shader (the in-block\n` +
+  `// top-down race, see the script) and the bridge at the end.\n` +
   bundle + bridge);
 
 console.log(`synced gpu-lexer ${UPSTREAM_VERSION} checkpoint ${metadata.runId}: ${tensors.length} tensors, ` +
