@@ -24,8 +24,8 @@ use std::{
 };
 
 use nsh_base::editor::{
-    EditorHighlighter, EditorLanguage, EditorText, EditorTextEdit, EditorToken, EditorTokens,
-    register_highlighter, register_language,
+    EditorHighlighter, EditorLanguage, EditorText, EditorTextEdit, EditorToken, EditorTokens, register_highlighter,
+    register_language,
 };
 use nsh_core::time::Instant;
 
@@ -59,7 +59,11 @@ pub struct HighlightSettings {
 
 impl Default for HighlightSettings {
     fn default() -> Self {
-        HighlightSettings { min_confidence: 0.0, debounce: Duration::from_millis(120), lexer: Lexer::new() }
+        HighlightSettings {
+            min_confidence: 0.0,
+            debounce: Duration::from_millis(120),
+            lexer: Lexer::new(),
+        }
     }
 }
 
@@ -81,7 +85,9 @@ pub fn line_tokens(text: &str, settings: &HighlightSettings) -> Vec<LineTokens> 
         if f32::from(span.level + 1) / 16.0 < settings.min_confidence {
             continue;
         }
-        let Some(token) = editor_token(span.class) else { continue };
+        let Some(token) = editor_token(span.class) else {
+            continue;
+        };
         let mut start = span.range.start;
         while start < span.range.end {
             while line + 1 < line_starts.len() && line_starts[line + 1] <= start {
@@ -209,13 +215,7 @@ impl EditorHighlighter for GpuLexerHighlighter {
             .splice(first..old_end, std::iter::repeat_n(None, edit.new_line_count));
     }
 
-    fn highlight(
-        &mut self,
-        text: &EditorText,
-        last_line: usize,
-        budget: Duration,
-        tokens: &mut EditorTokens,
-    ) -> bool {
+    fn highlight(&mut self, text: &EditorText, last_line: usize, budget: Duration, tokens: &mut EditorTokens) -> bool {
         if self.current.is_none() {
             let running = self.shared.0.lock().unwrap().running;
             let quiet = self.last_edit.is_none_or(|at| at.elapsed() >= self.settings.debounce);
@@ -238,10 +238,10 @@ impl EditorHighlighter for GpuLexerHighlighter {
         }
         let current = self.current.as_ref().unwrap();
         let last = last_line.min(current.len().saturating_sub(1));
-        for line in 0..=last {
+        for (line, tokens_of_line) in current.iter().enumerate().take(last + 1) {
             if self.given[line].is_none() {
-                tokens.line(line, current[line].iter().cloned());
-                self.given[line] = Some(current[line].clone());
+                tokens.line(line, tokens_of_line.iter().cloned());
+                self.given[line] = Some(tokens_of_line.clone());
             }
         }
         true
@@ -310,7 +310,13 @@ mod tests {
     fn confidence_threshold_drops_tokens() {
         let text = "fn main() { let x = 1; }";
         let all = line_tokens(text, &HighlightSettings::default());
-        let none = line_tokens(text, &HighlightSettings { min_confidence: 1.01, ..Default::default() });
+        let none = line_tokens(
+            text,
+            &HighlightSettings {
+                min_confidence: 1.01,
+                ..Default::default()
+            },
+        );
         assert!(!all[0].is_empty());
         assert!(none[0].is_empty());
     }
@@ -318,7 +324,10 @@ mod tests {
     #[test]
     fn highlighter_gives_every_line_then_only_changes() {
         let text = EditorText::default();
-        let mut highlighter = GpuLexerHighlighter::new(HighlightSettings { debounce: Duration::ZERO, ..Default::default() });
+        let mut highlighter = GpuLexerHighlighter::new(HighlightSettings {
+            debounce: Duration::ZERO,
+            ..Default::default()
+        });
         highlighter.edited(&EditorTextEdit::lines(0, 1, 1));
         let mut tokens = EditorTokens::default();
         let mut done = false;

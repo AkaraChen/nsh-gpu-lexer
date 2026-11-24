@@ -10,9 +10,12 @@
 //! vectorized across output units (never across a sum) and parallel across
 //! parts, so the speed comes without reordering any arithmetic.
 
+// Index loops over several parallel arrays read clearer than zips here.
+#![allow(clippy::needless_range_loop)]
+
 use crate::math::{exp, sigmoid, tanh};
-use crate::model::{weights, Weights, AUX, CLS, CLS_IN, H, JOINED, OUT};
-use crate::prepare::{feature_indices, Prepared};
+use crate::model::{AUX, CLS, CLS_IN, H, JOINED, OUT, Weights, weights};
+use crate::prepare::{Prepared, feature_indices};
 
 /// Runs `f(index, chunk)` over `chunk`-sized pieces of `out`, in parallel
 /// where threads are available.
@@ -68,7 +71,9 @@ fn embed(w: &Weights, prepared: &Prepared) -> Vec<f32> {
         let mut rows = [0u16; 17];
         let n = feature_indices(&prepared.data, index, &mut rows);
         for &row in &rows[..n] {
-            let embedding = &w.embedding[row as usize * H..(row as usize + 1) * H];
+            let embedding: &[f32; H] = w.embedding[row as usize * H..(row as usize + 1) * H]
+                .try_into()
+                .unwrap();
             for h in 0..H {
                 out[h] += embedding[h];
             }
@@ -98,7 +103,11 @@ fn hybrid_leaves(w: &Weights, prepared: &Prepared, raw: &[f32]) -> Vec<f32> {
         }
     }
     let at = |index: usize, h: usize| -> f64 {
-        if index < count { f64::from(raw[index * H + h]) } else { 0.0 }
+        if index < count {
+            f64::from(raw[index * H + h])
+        } else {
+            0.0
+        }
     };
 
     let mut local = vec![0f32; count * H];
@@ -125,8 +134,8 @@ fn hybrid_leaves(w: &Weights, prepared: &Prepared, raw: &[f32]) -> Vec<f32> {
         value.copy_from_slice(&w.state_input_bias);
         for k in 0..H {
             let x = f64::from(input[k]);
-            let gate_row = &w.state_gate_t[k * H..(k + 1) * H];
-            let value_row = &w.state_input_t[k * H..(k + 1) * H];
+            let gate_row: &[f64; H] = w.state_gate_t[k * H..(k + 1) * H].try_into().unwrap();
+            let value_row: &[f64; H] = w.state_input_t[k * H..(k + 1) * H].try_into().unwrap();
             for h in 0..H {
                 gate[h] += x * gate_row[h];
                 value[h] += x * value_row[h];
@@ -165,7 +174,7 @@ fn hybrid_leaves(w: &Weights, prepared: &Prepared, raw: &[f32]) -> Vec<f32> {
         let mut accumulate = |inputs: &[f32], first: usize| {
             for (k, &x) in inputs.iter().enumerate() {
                 let x = f64::from(x);
-                let row = &w.state_mix_t[(first + k) * H..(first + k + 1) * H];
+                let row: &[f64; H] = w.state_mix_t[(first + k) * H..(first + k + 1) * H].try_into().unwrap();
                 for h in 0..H {
                     sum[h] += x * row[h];
                 }
@@ -288,7 +297,7 @@ fn classify(w: &Weights, leaf: &[f32], context: &[f32]) -> u8 {
     auxiliary.copy_from_slice(&w.auxiliary_bias);
     for k in 0..JOINED {
         let x = joined[k];
-        let row = &w.auxiliary_t[k * AUX..(k + 1) * AUX];
+        let row: &[f64; AUX] = w.auxiliary_t[k * AUX..(k + 1) * AUX].try_into().unwrap();
         for a in 0..AUX {
             auxiliary[a] += row[a] * x;
         }
@@ -301,7 +310,7 @@ fn classify(w: &Weights, leaf: &[f32], context: &[f32]) -> u8 {
     classifier.copy_from_slice(&w.classifier_bias);
     for k in 0..CLS_IN {
         let x = joined[k];
-        let row = &w.classifier_t[k * CLS..(k + 1) * CLS];
+        let row: &[f64; CLS] = w.classifier_t[k * CLS..(k + 1) * CLS].try_into().unwrap();
         for c in 0..CLS {
             classifier[c] += row[c] * x;
         }
@@ -314,7 +323,7 @@ fn classify(w: &Weights, leaf: &[f32], context: &[f32]) -> u8 {
     sums.copy_from_slice(&w.output_bias);
     for c in 0..CLS {
         let x = classifier[c];
-        let row = &w.output_t[c * OUT..(c + 1) * OUT];
+        let row: &[f64; OUT] = w.output_t[c * OUT..(c + 1) * OUT].try_into().unwrap();
         for o in 0..OUT {
             sums[o] += row[o] * x;
         }

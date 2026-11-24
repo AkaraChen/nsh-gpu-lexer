@@ -65,7 +65,10 @@ mod tests {
             let x = f64::from(i) * 0.01;
             let ours = tanh(x);
             let theirs = x.tanh();
-            assert!((ours - theirs).abs() <= 2.0 * f64::EPSILON * theirs.abs().max(1e-300), "{x}");
+            assert!(
+                (ours - theirs).abs() <= 2.0 * f64::EPSILON * theirs.abs().max(1e-300),
+                "{x}"
+            );
         }
         assert_eq!(tanh(0.0), 0.0);
         assert_eq!(tanh(100.0), 1.0);

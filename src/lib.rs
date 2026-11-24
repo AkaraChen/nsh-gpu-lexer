@@ -52,7 +52,7 @@ pub mod generated {
 pub mod gpu;
 
 #[cfg(all(feature = "web-gpu", target_arch = "wasm32"))]
-mod web;
+pub mod web;
 
 #[cfg(feature = "nsh")]
 pub mod nsh;
@@ -64,8 +64,8 @@ fn native(registry: &mut nsh_core::prelude::Registry) {
     registry.module::<nsh::GpuLexer>();
 }
 
-pub use prepare::{prepare, Prepared};
-pub use spans::{spans_from_labels, Span};
+pub use prepare::{Prepared, prepare};
+pub use spans::{Span, spans_from_labels};
 
 /// The nine classes the model predicts, in upstream's class order.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -107,7 +107,10 @@ impl SyntaxClass {
 
     /// The class of a label's low four bits; codes without a class are plain.
     pub fn from_code(code: u8) -> SyntaxClass {
-        SyntaxClass::ALL.get(code as usize).copied().unwrap_or(SyntaxClass::Plain)
+        SyntaxClass::ALL
+            .get(code as usize)
+            .copied()
+            .unwrap_or(SyntaxClass::Plain)
     }
 
     /// Upstream's name: `"plain"`, `"comment"`, ...
@@ -165,7 +168,10 @@ impl Default for Lexer {
 impl Lexer {
     /// The default lexer: [`Backend::Auto`].
     pub const fn new() -> Lexer {
-        Lexer { backend: Backend::Auto, gpu_min_parts: DEFAULT_GPU_MIN_PARTS }
+        Lexer {
+            backend: Backend::Auto,
+            gpu_min_parts: DEFAULT_GPU_MIN_PARTS,
+        }
     }
 
     /// Chooses the backend.
@@ -205,10 +211,8 @@ impl Lexer {
                 Backend::Gpu => true,
                 Backend::Auto => prepared.len() >= self.gpu_min_parts,
             };
-            if wants_gpu {
-                if let Some(labels) = gpu::labels(prepared) {
-                    return labels;
-                }
+            if wants_gpu && let Some(labels) = gpu::labels(prepared) {
+                return labels;
             }
         }
         cpu::labels(prepared)
@@ -220,10 +224,10 @@ impl Lexer {
     pub async fn parse_async(&self, code: &str) -> Vec<Span> {
         #[cfg(all(feature = "web-gpu", target_arch = "wasm32"))]
         {
-            if self.backend != Backend::Cpu {
-                if let Some(spans) = web::parse(code).await {
-                    return spans;
-                }
+            if self.backend != Backend::Cpu
+                && let Some(spans) = web::parse(code).await
+            {
+                return spans;
             }
         }
         self.parse(code)
@@ -293,7 +297,11 @@ pub fn byte_spans(code: &str, spans: &[Span]) -> Vec<ByteSpan> {
         let start = to_byte(span.start);
         let end = to_byte(span.end);
         if end > start {
-            out.push(ByteSpan { class: span.class, range: start..end, level: span.level });
+            out.push(ByteSpan {
+                class: span.class,
+                range: start..end,
+                level: span.level,
+            });
         }
     }
     out
@@ -317,7 +325,10 @@ mod tests {
         for pair in spans.windows(2) {
             assert_eq!(pair[0].end, pair[1].start);
         }
-        let comment = spans.iter().find(|s| s.class == SyntaxClass::Comment).expect("a comment");
+        let comment = spans
+            .iter()
+            .find(|s| s.class == SyntaxClass::Comment)
+            .expect("a comment");
         // Whitespace is never classified, so a comment splits at its spaces.
         assert_eq!(&code[comment.start..comment.end], "//");
         assert!(spans.iter().any(|s| s.class == SyntaxClass::Number));

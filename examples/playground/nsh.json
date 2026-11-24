@@ -1,0 +1,9 @@
+{
+  "name": "gpu-lexer-playground",
+  "id": "dev.akarachen.gpulexer.playground",
+  "version": "0.1.0",
+  "build": 1,
+  "dependencies": {
+    "nsh-gpu-lexer": { "path": "../.." }
+  }
+}

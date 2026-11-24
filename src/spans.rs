@@ -37,7 +37,12 @@ pub fn spans_from_labels(ranges: &[u32], labels: &[u8]) -> Vec<Span> {
                 last.end = end;
                 last.level = last.level.min(level);
             }
-            _ => spans.push(Span { class, start, end, level }),
+            _ => spans.push(Span {
+                class,
+                start,
+                end,
+                level,
+            }),
         }
     }
     spans

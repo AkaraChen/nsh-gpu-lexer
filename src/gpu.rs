@@ -41,7 +41,11 @@ pub fn runtime_weights() -> Vec<f32> {
             } else {
                 63
             };
-            let signed = if value & 1 != 0 { -f64::from(value + 1) / 2.0 } else { f64::from(value) / 2.0 };
+            let signed = if value & 1 != 0 {
+                -f64::from(value + 1) / 2.0
+            } else {
+                f64::from(value) / 2.0
+            };
             out.push((signed * scale) as f32);
         }
         start += length;
@@ -111,7 +115,11 @@ impl Runtime {
         let (device, queue) = adapter
             .request_device(&wgpu::DeviceDescriptor {
                 label: Some("nsh-gpu-lexer"),
-                required_features: if f16 { wgpu::Features::SHADER_F16 } else { wgpu::Features::empty() },
+                required_features: if f16 {
+                    wgpu::Features::SHADER_F16
+                } else {
+                    wgpu::Features::empty()
+                },
                 required_limits: limits,
                 ..Default::default()
             })
@@ -140,7 +148,14 @@ impl Runtime {
             contents: bytemuck::cast_slice(&runtime_weights()),
             usage: wgpu::BufferUsages::STORAGE,
         });
-        Some(Runtime { device, queue, pipelines, weights, f16, adapter: adapter.get_info().name })
+        Some(Runtime {
+            device,
+            queue,
+            pipelines,
+            weights,
+            f16,
+            adapter: adapter.get_info().name,
+        })
     }
 
     fn labels(&self, prepared: &Prepared) -> Option<Vec<u8>> {
@@ -158,7 +173,7 @@ impl Runtime {
         }
         let value_bytes = if self.f16 { 2 } else { 4 };
         let label_bytes = u64::from((tokens + 3) & !3);
-        let limit = device.limits().max_storage_buffer_binding_size as u64;
+        let limit = device.limits().max_storage_buffer_binding_size;
         let leaf_bytes = u64::from(tokens) * HIDDEN * value_bytes;
         let tree_bytes = u64::from(tree_nodes) * HIDDEN * value_bytes;
         let scratch_bytes = (u64::from(blocks) * HIDDEN * 16).max(u64::from(tree_nodes) * HIDDEN * 4);
@@ -168,7 +183,11 @@ impl Runtime {
 
         use wgpu::BufferUsages as U;
         let init = |label: &str, contents: &[u8], usage: U| {
-            device.create_buffer_init(&wgpu::util::BufferInitDescriptor { label: Some(label), contents, usage })
+            device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some(label),
+                contents,
+                usage,
+            })
         };
         let empty = |label: &str, size: u64, usage: U| {
             device.create_buffer(&wgpu::BufferDescriptor {
@@ -193,16 +212,44 @@ impl Runtime {
         let bindings: [&[(u32, &wgpu::Buffer)]; 7] = [
             &[(0, &features), (2, &params), (9, &block_buffer), (12, &neighbors)],
             &[(2, &params), (3, &stream_buffer), (12, &neighbors)],
-            &[(0, &features), (2, &params), (3, &stream_buffer), (4, &self.weights), (9, &block_buffer), (11, &scratch), (12, &neighbors)],
+            &[
+                (0, &features),
+                (2, &params),
+                (3, &stream_buffer),
+                (4, &self.weights),
+                (9, &block_buffer),
+                (11, &scratch),
+                (12, &neighbors),
+            ],
             &[(2, &params), (3, &stream_buffer), (11, &scratch)],
             &[
-                (0, &features), (2, &params), (3, &stream_buffer), (4, &self.weights), (5, &leaf_states),
-                (6, &tree_up), (9, &block_buffer), (11, &scratch), (12, &neighbors),
+                (0, &features),
+                (2, &params),
+                (3, &stream_buffer),
+                (4, &self.weights),
+                (5, &leaf_states),
+                (6, &tree_up),
+                (9, &block_buffer),
+                (11, &scratch),
+                (12, &neighbors),
             ],
-            &[(2, &params), (3, &stream_buffer), (4, &self.weights), (6, &tree_up), (11, &scratch)],
             &[
-                (0, &features), (1, &labels), (2, &params), (4, &self.weights), (13, &self.weights),
-                (3, &stream_buffer), (5, &leaf_states), (9, &block_buffer), (11, &scratch),
+                (2, &params),
+                (3, &stream_buffer),
+                (4, &self.weights),
+                (6, &tree_up),
+                (11, &scratch),
+            ],
+            &[
+                (0, &features),
+                (1, &labels),
+                (2, &params),
+                (4, &self.weights),
+                (13, &self.weights),
+                (3, &stream_buffer),
+                (5, &leaf_states),
+                (9, &block_buffer),
+                (11, &scratch),
             ],
         ];
         let groups: Vec<wgpu::BindGroup> = bindings
@@ -211,7 +258,10 @@ impl Runtime {
             .map(|(index, entries)| {
                 let entries: Vec<wgpu::BindGroupEntry> = entries
                     .iter()
-                    .map(|&(binding, buffer)| wgpu::BindGroupEntry { binding, resource: buffer.as_entire_binding() })
+                    .map(|&(binding, buffer)| wgpu::BindGroupEntry {
+                        binding,
+                        resource: buffer.as_entire_binding(),
+                    })
                     .collect();
                 device.create_bind_group(&wgpu::BindGroupDescriptor {
                     label: None,
@@ -228,8 +278,11 @@ impl Runtime {
             let end = blocks.min(first + chunk_blocks);
             // The first submission runs every earlier pass, over all blocks.
             let block_count = if first == 0 { blocks } else { end };
-            self.queue
-                .write_buffer(&params, 0, bytemuck::cast_slice(&[stream_count, first, block_count, tree_nodes]));
+            self.queue.write_buffer(
+                &params,
+                0,
+                bytemuck::cast_slice(&[stream_count, first, block_count, tree_nodes]),
+            );
             let mut encoder = device.create_command_encoder(&Default::default());
             if first == 0 {
                 encoder.clear_buffer(&labels, 0, None);
@@ -243,7 +296,14 @@ impl Runtime {
                     pass.dispatch_workgroups(x, workgroups.div_ceil(x), 1);
                 };
                 if first == 0 {
-                    let counts = [(blocks + 63) >> 6, stream_count, blocks, stream_count * 4, blocks, stream_count];
+                    let counts = [
+                        (blocks + 63) >> 6,
+                        stream_count,
+                        blocks,
+                        stream_count * 4,
+                        blocks,
+                        stream_count,
+                    ];
                     for (index, count) in counts.into_iter().enumerate() {
                         encode(index, count);
                     }

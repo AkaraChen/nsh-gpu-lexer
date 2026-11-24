@@ -180,15 +180,16 @@ impl GpuLexer {
     /// Makes gpu-lexer the highlighter of this engine's editors for text
     /// whose language is unknown or not set (Plain Text), and of the
     /// `"gpu-lexer"` language. Explicit: nothing is highlighted by it until
-    /// this is called. Calling it again replaces the options.
-    pub fn install_fallback(options: Option<GpuLexerHighlightOptions>) {
+    /// this is called. Calling it again replaces the options. Resolves once
+    /// the editors have it.
+    pub async fn install_fallback(options: Option<GpuLexerHighlightOptions>) {
         editor::register_fallback_with(options.unwrap_or_default().settings());
     }
 
     /// Makes gpu-lexer the highlighter of the languages `languages` names
     /// (names, aliases or extensions: `"rust"`, `"ts"`), in place of the
-    /// built-in highlighting.
-    pub fn install_for(languages: Vec<String>, options: Option<GpuLexerHighlightOptions>) {
+    /// built-in highlighting. Resolves once the editors have it.
+    pub async fn install_for(languages: Vec<String>, options: Option<GpuLexerHighlightOptions>) {
         let settings = options.unwrap_or_default().settings();
         for language in languages {
             editor::register_for_with(&language, settings);

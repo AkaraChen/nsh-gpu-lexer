@@ -32,36 +32,254 @@ pub struct TensorSpec {
     pub shape: &'static [usize],
 }
 
-pub const FEATURE_EMBEDDING: TensorSpec = TensorSpec { name: "featureEmbedding", offset: 0, length: 24160, scale: 0.2621793746948242, shape: &[755, 32] };
-pub const NEIGHBOR_SCALE: TensorSpec = TensorSpec { name: "neighborScale", offset: 24160, length: 96, scale: 0.03225806451612903, shape: &[3, 32] };
-pub const LEAF_BIAS: TensorSpec = TensorSpec { name: "leafBias", offset: 24256, length: 32, scale: 0.01188559974393537, shape: &[32] };
-pub const MERGE_OWN_LEFT: TensorSpec = TensorSpec { name: "mergeOwnLeft", offset: 24288, length: 384, scale: 0.08325056106813493, shape: &[12, 32] };
-pub const MERGE_OWN_RIGHT: TensorSpec = TensorSpec { name: "mergeOwnRight", offset: 24672, length: 384, scale: 0.10837609537186162, shape: &[12, 32] };
-pub const MERGE_CROSS_LEFT: TensorSpec = TensorSpec { name: "mergeCrossLeft", offset: 25056, length: 384, scale: 0.05020363100113407, shape: &[12, 32] };
-pub const MERGE_CROSS_RIGHT: TensorSpec = TensorSpec { name: "mergeCrossRight", offset: 25440, length: 384, scale: 0.04204939257714056, shape: &[12, 32] };
-pub const MERGE_BIAS: TensorSpec = TensorSpec { name: "mergeBias", offset: 25824, length: 384, scale: 0.03353706867464127, shape: &[12, 32] };
-pub const DOWN_OWN_PARENT: TensorSpec = TensorSpec { name: "downOwnParent", offset: 26208, length: 384, scale: 0.0809451687720514, shape: &[12, 32] };
-pub const DOWN_OWN_SELF: TensorSpec = TensorSpec { name: "downOwnSelf", offset: 26592, length: 384, scale: 0.04019846070197321, shape: &[12, 32] };
-pub const DOWN_OWN_SIBLING: TensorSpec = TensorSpec { name: "downOwnSibling", offset: 26976, length: 384, scale: 0.07147823610613423, shape: &[12, 32] };
-pub const DOWN_CROSS_PARENT: TensorSpec = TensorSpec { name: "downCrossParent", offset: 27360, length: 384, scale: 0.04994158975539669, shape: &[12, 32] };
-pub const DOWN_CROSS_SELF: TensorSpec = TensorSpec { name: "downCrossSelf", offset: 27744, length: 384, scale: 0.05150891888526178, shape: &[12, 32] };
-pub const DOWN_CROSS_SIBLING: TensorSpec = TensorSpec { name: "downCrossSibling", offset: 28128, length: 384, scale: 0.036710143089294434, shape: &[12, 32] };
-pub const DOWN_SKIP: TensorSpec = TensorSpec { name: "downSkip", offset: 28512, length: 384, scale: 0.0840231833919402, shape: &[12, 32] };
-pub const DOWN_LEFT_BIAS: TensorSpec = TensorSpec { name: "downLeftBias", offset: 28896, length: 384, scale: 0.04425309165831535, shape: &[12, 32] };
-pub const DOWN_RIGHT_BIAS: TensorSpec = TensorSpec { name: "downRightBias", offset: 29280, length: 384, scale: 0.0886865661990258, shape: &[12, 32] };
-pub const CLASSIFIER_INPUT: TensorSpec = TensorSpec { name: "classifierInput", offset: 29664, length: 14080, scale: 0.11190279837577574, shape: &[176, 80] };
-pub const CLASSIFIER_BIAS: TensorSpec = TensorSpec { name: "classifierBias", offset: 43744, length: 176, scale: 0.016223780570491668, shape: &[176] };
-pub const OUTPUT: TensorSpec = TensorSpec { name: "output", offset: 43920, length: 1584, scale: 0.05351519200109666, shape: &[9, 176] };
-pub const OUTPUT_BIAS: TensorSpec = TensorSpec { name: "outputBias", offset: 45504, length: 9, scale: 0.018060778417894916, shape: &[9] };
-pub const AUXILIARY_OUTPUT: TensorSpec = TensorSpec { name: "auxiliaryOutput", offset: 45513, length: 1024, scale: 0.08612691202471333, shape: &[16, 64] };
-pub const AUXILIARY_BIAS: TensorSpec = TensorSpec { name: "auxiliaryBias", offset: 46537, length: 16, scale: 0.05543075069304435, shape: &[16] };
-pub const LOCAL_OFFSET_SCALE: TensorSpec = TensorSpec { name: "localOffsetScale", offset: 46553, length: 160, scale: 0.059798959762819355, shape: &[5, 32] };
-pub const LOCAL_NONSPACE_SCALE: TensorSpec = TensorSpec { name: "localNonspaceScale", offset: 46713, length: 64, scale: 0.020740664774371732, shape: &[2, 32] };
-pub const STATE_INPUT: TensorSpec = TensorSpec { name: "stateInput", offset: 46777, length: 1024, scale: 0.035369873046875, shape: &[32, 32] };
-pub const STATE_INPUT_BIAS: TensorSpec = TensorSpec { name: "stateInputBias", offset: 47801, length: 32, scale: 0.011065134117680212, shape: &[32] };
-pub const STATE_GATE: TensorSpec = TensorSpec { name: "stateGate", offset: 47833, length: 1024, scale: 0.08038856906275596, shape: &[32, 32] };
-pub const STATE_GATE_BIAS: TensorSpec = TensorSpec { name: "stateGateBias", offset: 48857, length: 32, scale: 0.16413517921201645, shape: &[32] };
-pub const STATE_MIX: TensorSpec = TensorSpec { name: "stateMix", offset: 48889, length: 2048, scale: 0.06225539791968561, shape: &[32, 64] };
-pub const STATE_MIX_BIAS: TensorSpec = TensorSpec { name: "stateMixBias", offset: 50937, length: 32, scale: 0.030857564941529306, shape: &[32] };
+pub const FEATURE_EMBEDDING: TensorSpec = TensorSpec {
+    name: "featureEmbedding",
+    offset: 0,
+    length: 24160,
+    scale: 0.2621793746948242,
+    shape: &[755, 32],
+};
+pub const NEIGHBOR_SCALE: TensorSpec = TensorSpec {
+    name: "neighborScale",
+    offset: 24160,
+    length: 96,
+    scale: 0.03225806451612903,
+    shape: &[3, 32],
+};
+pub const LEAF_BIAS: TensorSpec = TensorSpec {
+    name: "leafBias",
+    offset: 24256,
+    length: 32,
+    scale: 0.01188559974393537,
+    shape: &[32],
+};
+pub const MERGE_OWN_LEFT: TensorSpec = TensorSpec {
+    name: "mergeOwnLeft",
+    offset: 24288,
+    length: 384,
+    scale: 0.08325056106813493,
+    shape: &[12, 32],
+};
+pub const MERGE_OWN_RIGHT: TensorSpec = TensorSpec {
+    name: "mergeOwnRight",
+    offset: 24672,
+    length: 384,
+    scale: 0.10837609537186162,
+    shape: &[12, 32],
+};
+pub const MERGE_CROSS_LEFT: TensorSpec = TensorSpec {
+    name: "mergeCrossLeft",
+    offset: 25056,
+    length: 384,
+    scale: 0.05020363100113407,
+    shape: &[12, 32],
+};
+pub const MERGE_CROSS_RIGHT: TensorSpec = TensorSpec {
+    name: "mergeCrossRight",
+    offset: 25440,
+    length: 384,
+    scale: 0.04204939257714056,
+    shape: &[12, 32],
+};
+pub const MERGE_BIAS: TensorSpec = TensorSpec {
+    name: "mergeBias",
+    offset: 25824,
+    length: 384,
+    scale: 0.03353706867464127,
+    shape: &[12, 32],
+};
+pub const DOWN_OWN_PARENT: TensorSpec = TensorSpec {
+    name: "downOwnParent",
+    offset: 26208,
+    length: 384,
+    scale: 0.0809451687720514,
+    shape: &[12, 32],
+};
+pub const DOWN_OWN_SELF: TensorSpec = TensorSpec {
+    name: "downOwnSelf",
+    offset: 26592,
+    length: 384,
+    scale: 0.04019846070197321,
+    shape: &[12, 32],
+};
+pub const DOWN_OWN_SIBLING: TensorSpec = TensorSpec {
+    name: "downOwnSibling",
+    offset: 26976,
+    length: 384,
+    scale: 0.07147823610613423,
+    shape: &[12, 32],
+};
+pub const DOWN_CROSS_PARENT: TensorSpec = TensorSpec {
+    name: "downCrossParent",
+    offset: 27360,
+    length: 384,
+    scale: 0.04994158975539669,
+    shape: &[12, 32],
+};
+pub const DOWN_CROSS_SELF: TensorSpec = TensorSpec {
+    name: "downCrossSelf",
+    offset: 27744,
+    length: 384,
+    scale: 0.05150891888526178,
+    shape: &[12, 32],
+};
+pub const DOWN_CROSS_SIBLING: TensorSpec = TensorSpec {
+    name: "downCrossSibling",
+    offset: 28128,
+    length: 384,
+    scale: 0.036710143089294434,
+    shape: &[12, 32],
+};
+pub const DOWN_SKIP: TensorSpec = TensorSpec {
+    name: "downSkip",
+    offset: 28512,
+    length: 384,
+    scale: 0.0840231833919402,
+    shape: &[12, 32],
+};
+pub const DOWN_LEFT_BIAS: TensorSpec = TensorSpec {
+    name: "downLeftBias",
+    offset: 28896,
+    length: 384,
+    scale: 0.04425309165831535,
+    shape: &[12, 32],
+};
+pub const DOWN_RIGHT_BIAS: TensorSpec = TensorSpec {
+    name: "downRightBias",
+    offset: 29280,
+    length: 384,
+    scale: 0.0886865661990258,
+    shape: &[12, 32],
+};
+pub const CLASSIFIER_INPUT: TensorSpec = TensorSpec {
+    name: "classifierInput",
+    offset: 29664,
+    length: 14080,
+    scale: 0.11190279837577574,
+    shape: &[176, 80],
+};
+pub const CLASSIFIER_BIAS: TensorSpec = TensorSpec {
+    name: "classifierBias",
+    offset: 43744,
+    length: 176,
+    scale: 0.016223780570491668,
+    shape: &[176],
+};
+pub const OUTPUT: TensorSpec = TensorSpec {
+    name: "output",
+    offset: 43920,
+    length: 1584,
+    scale: 0.05351519200109666,
+    shape: &[9, 176],
+};
+pub const OUTPUT_BIAS: TensorSpec = TensorSpec {
+    name: "outputBias",
+    offset: 45504,
+    length: 9,
+    scale: 0.018060778417894916,
+    shape: &[9],
+};
+pub const AUXILIARY_OUTPUT: TensorSpec = TensorSpec {
+    name: "auxiliaryOutput",
+    offset: 45513,
+    length: 1024,
+    scale: 0.08612691202471333,
+    shape: &[16, 64],
+};
+pub const AUXILIARY_BIAS: TensorSpec = TensorSpec {
+    name: "auxiliaryBias",
+    offset: 46537,
+    length: 16,
+    scale: 0.05543075069304435,
+    shape: &[16],
+};
+pub const LOCAL_OFFSET_SCALE: TensorSpec = TensorSpec {
+    name: "localOffsetScale",
+    offset: 46553,
+    length: 160,
+    scale: 0.059798959762819355,
+    shape: &[5, 32],
+};
+pub const LOCAL_NONSPACE_SCALE: TensorSpec = TensorSpec {
+    name: "localNonspaceScale",
+    offset: 46713,
+    length: 64,
+    scale: 0.020740664774371732,
+    shape: &[2, 32],
+};
+pub const STATE_INPUT: TensorSpec = TensorSpec {
+    name: "stateInput",
+    offset: 46777,
+    length: 1024,
+    scale: 0.035369873046875,
+    shape: &[32, 32],
+};
+pub const STATE_INPUT_BIAS: TensorSpec = TensorSpec {
+    name: "stateInputBias",
+    offset: 47801,
+    length: 32,
+    scale: 0.011065134117680212,
+    shape: &[32],
+};
+pub const STATE_GATE: TensorSpec = TensorSpec {
+    name: "stateGate",
+    offset: 47833,
+    length: 1024,
+    scale: 0.08038856906275596,
+    shape: &[32, 32],
+};
+pub const STATE_GATE_BIAS: TensorSpec = TensorSpec {
+    name: "stateGateBias",
+    offset: 48857,
+    length: 32,
+    scale: 0.16413517921201645,
+    shape: &[32],
+};
+pub const STATE_MIX: TensorSpec = TensorSpec {
+    name: "stateMix",
+    offset: 48889,
+    length: 2048,
+    scale: 0.06225539791968561,
+    shape: &[32, 64],
+};
+pub const STATE_MIX_BIAS: TensorSpec = TensorSpec {
+    name: "stateMixBias",
+    offset: 50937,
+    length: 32,
+    scale: 0.030857564941529306,
+    shape: &[32],
+};
 
-pub const TENSORS: [TensorSpec; 31] = [FEATURE_EMBEDDING, NEIGHBOR_SCALE, LEAF_BIAS, MERGE_OWN_LEFT, MERGE_OWN_RIGHT, MERGE_CROSS_LEFT, MERGE_CROSS_RIGHT, MERGE_BIAS, DOWN_OWN_PARENT, DOWN_OWN_SELF, DOWN_OWN_SIBLING, DOWN_CROSS_PARENT, DOWN_CROSS_SELF, DOWN_CROSS_SIBLING, DOWN_SKIP, DOWN_LEFT_BIAS, DOWN_RIGHT_BIAS, CLASSIFIER_INPUT, CLASSIFIER_BIAS, OUTPUT, OUTPUT_BIAS, AUXILIARY_OUTPUT, AUXILIARY_BIAS, LOCAL_OFFSET_SCALE, LOCAL_NONSPACE_SCALE, STATE_INPUT, STATE_INPUT_BIAS, STATE_GATE, STATE_GATE_BIAS, STATE_MIX, STATE_MIX_BIAS];
+pub const TENSORS: [TensorSpec; 31] = [
+    FEATURE_EMBEDDING,
+    NEIGHBOR_SCALE,
+    LEAF_BIAS,
+    MERGE_OWN_LEFT,
+    MERGE_OWN_RIGHT,
+    MERGE_CROSS_LEFT,
+    MERGE_CROSS_RIGHT,
+    MERGE_BIAS,
+    DOWN_OWN_PARENT,
+    DOWN_OWN_SELF,
+    DOWN_OWN_SIBLING,
+    DOWN_CROSS_PARENT,
+    DOWN_CROSS_SELF,
+    DOWN_CROSS_SIBLING,
+    DOWN_SKIP,
+    DOWN_LEFT_BIAS,
+    DOWN_RIGHT_BIAS,
+    CLASSIFIER_INPUT,
+    CLASSIFIER_BIAS,
+    OUTPUT,
+    OUTPUT_BIAS,
+    AUXILIARY_OUTPUT,
+    AUXILIARY_BIAS,
+    LOCAL_OFFSET_SCALE,
+    LOCAL_NONSPACE_SCALE,
+    STATE_INPUT,
+    STATE_INPUT_BIAS,
+    STATE_GATE,
+    STATE_GATE_BIAS,
+    STATE_MIX,
+    STATE_MIX_BIAS,
+];

@@ -67,7 +67,11 @@ fn code(data: &[u8], index: usize) -> i32 {
     let low = u32::from(data[byte]);
     let high = u32::from(data.get(byte + 1).copied().unwrap_or(0));
     let encoded = ((low | (high << 8)) >> shift) & mask;
-    if encoded & sign != 0 { encoded as i32 - mask as i32 - 1 } else { encoded as i32 }
+    if encoded & sign != 0 {
+        encoded as i32 - mask as i32 - 1
+    } else {
+        encoded as i32
+    }
 }
 
 /// A tensor's values, rounded to `f32` as the reference stores them.

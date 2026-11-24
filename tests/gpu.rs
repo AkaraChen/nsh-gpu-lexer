@@ -10,19 +10,26 @@
 
 use std::{fs, io::Read, path::Path};
 
-use nsh_gpu_lexer::{gpu, prepare, spans_from_labels, Backend, Lexer};
+use nsh_gpu_lexer::{Backend, Lexer, gpu, prepare, spans_from_labels};
 
 fn golden_labels(name: &str) -> Vec<u8> {
-    let path = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/golden").join(format!("{name}.labels.gz"));
+    let path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests/golden")
+        .join(format!("{name}.labels.gz"));
     let mut out = Vec::new();
-    flate2::read::GzDecoder::new(fs::File::open(path).unwrap()).read_to_end(&mut out).unwrap();
+    flate2::read::GzDecoder::new(fs::File::open(path).unwrap())
+        .read_to_end(&mut out)
+        .unwrap();
     out
 }
 
 #[test]
 fn gpu_matches_js_reference() {
     if !gpu::available() {
-        assert!(std::env::var_os("NSH_GPU_LEXER_REQUIRE_GPU").is_none(), "no GPU adapter");
+        assert!(
+            std::env::var_os("NSH_GPU_LEXER_REQUIRE_GPU").is_none(),
+            "no GPU adapter"
+        );
         eprintln!("skipped: no GPU adapter");
         return;
     }
@@ -32,7 +39,8 @@ fn gpu_matches_js_reference() {
     let manifest: serde_json::Value =
         serde_json::from_str(&fs::read_to_string(root.join("tests/golden/manifest.json")).unwrap()).unwrap();
     let lexer = Lexer::new().backend(Backend::Gpu);
-    let (mut parts, mut class_diff, mut level_diff, mut spans, mut span_diff) = (0usize, 0usize, 0usize, 0usize, 0usize);
+    let (mut parts, mut class_diff, mut level_diff, mut spans, mut span_diff) =
+        (0usize, 0usize, 0usize, 0usize, 0usize);
     let mut far = Vec::new();
     for file in manifest["files"].as_array().unwrap() {
         if file["synthetic"].as_bool().unwrap() {
@@ -52,17 +60,31 @@ fn gpu_matches_js_reference() {
             if a & 15 != e & 15 {
                 file_class += 1;
                 if e >> 4 > 8 {
-                    far.push(format!("{name} part {index}: {} != {} (level {})", a & 15, e & 15, e >> 4));
+                    far.push(format!(
+                        "{name} part {index}: {} != {} (level {})",
+                        a & 15,
+                        e & 15,
+                        e >> 4
+                    ));
                 }
             } else if a != e {
                 level_diff += 1;
             }
         }
-        let ours: std::collections::HashSet<_> =
-            spans_from_labels(&prepared.ranges, &actual).iter().map(|s| (s.class, s.start, s.end)).collect();
+        let ours: std::collections::HashSet<_> = spans_from_labels(&prepared.ranges, &actual)
+            .iter()
+            .map(|s| (s.class, s.start, s.end))
+            .collect();
         let theirs = spans_from_labels(&prepared.ranges, &expected);
-        let differ = theirs.iter().filter(|s| !ours.contains(&(s.class, s.start, s.end))).count();
-        println!("{name}: class diff {file_class}, span diff {differ} of {}, {:.1} ms", theirs.len(), elapsed.as_secs_f64() * 1e3);
+        let differ = theirs
+            .iter()
+            .filter(|s| !ours.contains(&(s.class, s.start, s.end)))
+            .count();
+        println!(
+            "{name}: class diff {file_class}, span diff {differ} of {}, {:.1} ms",
+            theirs.len(),
+            elapsed.as_secs_f64() * 1e3
+        );
         parts += expected.len();
         class_diff += file_class;
         spans += theirs.len();
@@ -70,7 +92,13 @@ fn gpu_matches_js_reference() {
         // The lexer routes Backend::Gpu here too.
         assert_eq!(lexer.backend_for(prepared.len()), "gpu");
     }
-    println!("total: {parts} parts, class diff {class_diff}, level diff {level_diff}; {spans} spans, span diff {span_diff}");
-    assert!(far.is_empty(), "class differences outside near-ties:\n{}", far.join("\n"));
+    println!(
+        "total: {parts} parts, class diff {class_diff}, level diff {level_diff}; {spans} spans, span diff {span_diff}"
+    );
+    assert!(
+        far.is_empty(),
+        "class differences outside near-ties:\n{}",
+        far.join("\n")
+    );
     assert!(class_diff * 1000 <= parts, "{class_diff} of {parts} parts differ");
 }

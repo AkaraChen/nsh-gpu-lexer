@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "packages": [
+    {
+      "name": "nsh-gpu-lexer",
+      "version": "0.1.0",
+      "path": "../..",
+      "module": "nsh-gpu-lexer",
+      "exports": {
+        "nsh-gpu-lexer/editor": "tsx/editor.tsx",
+        "nsh-gpu-lexer/text-view": "tsx/text-view.tsx"
+      }
+    }
+  ]
+}

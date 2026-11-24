@@ -130,7 +130,11 @@ pub fn prepare(source: &[u16]) -> Prepared {
         let first_raw = u32::from(source[offset]);
         offset += 1;
         let first = if first_raw > 127 { 95 } else { first_raw };
-        let kind = if first_raw > 127 { PART_WORD } else { u32::from(ASCII_KIND[first_raw as usize]) };
+        let kind = if first_raw > 127 {
+            PART_WORD
+        } else {
+            u32::from(ASCII_KIND[first_raw as usize])
+        };
         let mut flags: u32 = if line_start { 16 } else { 0 };
         let mut last = first;
         let mut packed = kind | (first << 5);
@@ -186,7 +190,11 @@ pub fn prepare(source: &[u16]) -> Prepared {
         }
 
         let part_length = offset - from;
-        let bucket = if part_length > 127 { 7 } else { 31 - (part_length as u32).leading_zeros() };
+        let bucket = if part_length > 127 {
+            7
+        } else {
+            31 - (part_length as u32).leading_zeros()
+        };
         packed |= (bucket << 2) | (last << 12);
         if !ranges.is_empty() {
             let pair_index = ((previous_last << 7) | first) as usize;
@@ -284,7 +292,21 @@ mod tests {
         let ranges: Vec<(u32, u32)> = prepared.ranges.chunks(2).map(|r| (r[0], r[1])).collect();
         assert_eq!(
             ranges,
-            vec![(0, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 10), (10, 12), (12, 13), (13, 14), (14, 15), (15, 16)]
+            vec![
+                (0, 3),
+                (3, 4),
+                (4, 5),
+                (5, 6),
+                (6, 7),
+                (7, 8),
+                (8, 9),
+                (9, 10),
+                (10, 12),
+                (12, 13),
+                (13, 14),
+                (14, 15),
+                (15, 16)
+            ]
         );
         let kinds: Vec<u32> = (0..prepared.len()).map(|i| prepared.kind(i)).collect();
         assert_eq!(kinds, vec![0, 1, 0, 1, 3, 1, 0, 3, 2, 3, 3, 1, 0]);

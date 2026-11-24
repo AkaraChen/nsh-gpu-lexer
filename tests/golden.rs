@@ -9,12 +9,16 @@
 
 use std::{fs, io::Read, path::Path};
 
-use nsh_gpu_lexer::{prepare, spans_from_labels, Backend, Lexer};
+use nsh_gpu_lexer::{Backend, Lexer, prepare, spans_from_labels};
 
 fn golden_labels(name: &str) -> Vec<u8> {
-    let path = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/golden").join(format!("{name}.labels.gz"));
+    let path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests/golden")
+        .join(format!("{name}.labels.gz"));
     let mut out = Vec::new();
-    flate2::read::GzDecoder::new(fs::File::open(path).unwrap()).read_to_end(&mut out).unwrap();
+    flate2::read::GzDecoder::new(fs::File::open(path).unwrap())
+        .read_to_end(&mut out)
+        .unwrap();
     out
 }
 
@@ -42,7 +46,11 @@ fn cpu_matches_js_reference() {
         let name = file["name"].as_str().unwrap();
         let text = source(name, file["synthetic"].as_bool().unwrap());
         let units: Vec<u16> = text.encode_utf16().collect();
-        assert_eq!(units.len() as u64, file["utf16Length"].as_u64().unwrap(), "{name}: source length");
+        assert_eq!(
+            units.len() as u64,
+            file["utf16Length"].as_u64().unwrap(),
+            "{name}: source length"
+        );
         let prepared = prepare(&units);
         let expected = golden_labels(name);
         assert_eq!(prepared.len(), expected.len(), "{name}: part count");
@@ -55,7 +63,12 @@ fn cpu_matches_js_reference() {
             if a & 15 != e & 15 {
                 class_diff += 1;
                 if e >> 4 >= 8 {
-                    failures.push(format!("{name} part {index}: class {} != {} at level {}", a & 15, e & 15, e >> 4));
+                    failures.push(format!(
+                        "{name} part {index}: class {} != {} at level {}",
+                        a & 15,
+                        e & 15,
+                        e >> 4
+                    ));
                 }
             } else if a != e {
                 level_diff += 1;
@@ -63,7 +76,11 @@ fn cpu_matches_js_reference() {
         }
         let ours = spans_from_labels(&prepared.ranges, &actual);
         let theirs = spans_from_labels(&prepared.ranges, &expected);
-        assert_eq!(theirs.len() as u64, file["spans"].as_u64().unwrap(), "{name}: golden span count");
+        assert_eq!(
+            theirs.len() as u64,
+            file["spans"].as_u64().unwrap(),
+            "{name}: golden span count"
+        );
         // Spans whose (type, start, end) the reference does not have.
         let mut theirs_set: std::collections::HashSet<(u8, usize, usize)> =
             theirs.iter().map(|s| (s.class as u8, s.start, s.end)).collect();
@@ -104,7 +121,14 @@ fn cpu_matches_js_reference() {
         )
         .unwrap();
     }
-    assert!(failures.is_empty(), "class differences outside near-ties:\n{}", failures.join("\n"));
+    assert!(
+        failures.is_empty(),
+        "class differences outside near-ties:\n{}",
+        failures.join("\n")
+    );
     // Near-ties are allowed but must stay rare.
-    assert!(total_class * 10_000 <= total_parts, "{total_class} of {total_parts} parts differ");
+    assert!(
+        total_class * 10_000 <= total_parts,
+        "{total_class} of {total_parts} parts differ"
+    );
 }

@@ -12,7 +12,11 @@ fn main() {
     let corpus = format!("{lodash}\n{three}");
     let lexer = Lexer::new().backend(Backend::Cpu);
     let threads = std::thread::available_parallelism().map_or(1, |n| n.get());
-    println!("CPU backend, {threads} threads ({} {})", std::env::consts::OS, std::env::consts::ARCH);
+    println!(
+        "CPU backend, {threads} threads ({} {})",
+        std::env::consts::OS,
+        std::env::consts::ARCH
+    );
     println!();
     println!("| Input | UTF-16 units | Parts | Spans | Median | Throughput |");
     println!("|---|---:|---:|---:|---:|---:|");

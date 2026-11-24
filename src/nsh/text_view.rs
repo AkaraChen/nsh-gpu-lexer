@@ -13,7 +13,10 @@
 
 use std::ops::Range;
 
-use nsh_base::{editor::EditorToken, text_view::{CodeBlock, CodeHighlighter}};
+use nsh_base::{
+    editor::EditorToken,
+    text_view::{CodeBlock, CodeHighlighter},
+};
 use nsh_core::{element::StyleRefinement, prelude::*};
 
 use super::editor::editor_token;
@@ -31,7 +34,10 @@ pub struct CodeHighlightSettings {
 
 impl Default for CodeHighlightSettings {
     fn default() -> Self {
-        CodeHighlightSettings { min_confidence: 0.0, unnamed_only: false }
+        CodeHighlightSettings {
+            min_confidence: 0.0,
+            unnamed_only: false,
+        }
     }
 }
 

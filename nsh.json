@@ -1,0 +1,7 @@
+{
+  "nsh": ">=0.6",
+  "exports": {
+    "nsh-gpu-lexer/editor": "tsx/editor.tsx",
+    "nsh-gpu-lexer/text-view": "tsx/text-view.tsx"
+  }
+}
