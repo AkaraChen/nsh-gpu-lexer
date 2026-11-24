@@ -14,7 +14,8 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { gzipSync } from "node:zlib";
+import { gunzipSync, gzipSync } from "node:zlib";
+import { existsSync } from "node:fs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const upstream = resolve(process.argv[2] ?? join(root, ".upstream/gpu-lexer"));
@@ -78,7 +79,11 @@ for (const [name, source] of sources) {
   const { labels, spans } = goldenLabels(source);
   const spanDigest = createHash("sha256");
   for (const span of spans) spanDigest.update(`${span.type},${span.start},${span.end},${span.confidence * 16}\n`);
-  writeFileSync(join(root, "tests/golden", `${name}.labels.gz`), gzipSync(labels, { level: 9 }));
+  // Rewritten only when the labels changed, so another zlib's bytes are no diff.
+  const labelsPath = join(root, "tests/golden", `${name}.labels.gz`);
+  if (!existsSync(labelsPath) || !Buffer.from(gunzipSync(readFileSync(labelsPath))).equals(Buffer.from(labels))) {
+    writeFileSync(labelsPath, gzipSync(labels, { level: 9 }));
+  }
   manifest.files.push({
     name,
     synthetic: name in synthetic,

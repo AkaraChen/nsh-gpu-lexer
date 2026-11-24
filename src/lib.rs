@@ -43,8 +43,10 @@ mod spans;
 pub mod generated {
     //! Constants generated from the upstream checkpoint by
     //! `scripts/sync-upstream.mjs`.
+    #[rustfmt::skip]
     pub mod model;
     #[cfg(any(feature = "gpu", test))]
+    #[rustfmt::skip]
     pub mod runtime;
 }
 

@@ -1,0 +1,177 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  NSH_VERSION: v0.6.1
+
+jobs:
+  lint:
+    name: fmt + clippy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo clippy --all-targets --features gpu -- -D warnings
+      - run: cargo clippy --all-targets --no-default-features --features cpu -- -D warnings
+      - run: cargo clippy --target wasm32-unknown-unknown --features web-gpu -- -D warnings
+
+  test:
+    name: test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      # Unit tests, doc tests and the parity of the CPU backend with the
+      # upstream JS reference on every fixture (tests/golden.rs).
+      - name: cargo test (CPU parity with the JS reference)
+        run: cargo test --release
+        env:
+          PARITY_REPORT: ${{ runner.temp }}/parity.json
+      - name: parity report
+        shell: bash
+        run: cat "$RUNNER_TEMP/parity.json" | head -c 600; echo
+      - name: cargo build --features gpu
+        run: cargo build --release --features gpu
+
+  mobile:
+    name: build (${{ matrix.target }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-24.04, target: aarch64-linux-android }
+          - { os: macos-14, target: aarch64-apple-ios }
+          - { os: macos-14, target: aarch64-apple-ios-sim }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+      - run: cargo build --release --target ${{ matrix.target }} --features gpu
+
+  wasm:
+    name: wasm32
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - name: CPU only
+        run: cargo build --release --target wasm32-unknown-unknown --no-default-features --features cpu
+      - name: Native Shell module
+        run: cargo build --release --target wasm32-unknown-unknown
+      - name: web-gpu (the npm package on the browser's WebGPU)
+        run: cargo build --release --target wasm32-unknown-unknown --features web-gpu
+
+  gpu-parity:
+    name: GPU parity (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Mesa's lavapipe: software Vulkan, with shader-f16.
+          - { name: lavapipe f16, os: ubuntu-24.04, env: "", require: "1" }
+          - { name: lavapipe f32, os: ubuntu-24.04, env: "NSH_GPU_LEXER_NO_F16=1", require: "1" }
+          # The macOS runner's Metal device, when the VM exposes one.
+          - { name: macOS Metal, os: macos-14, env: "", require: "" }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: gpu
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y mesa-vulkan-drivers
+      - name: GPU backend against the JS reference
+        shell: bash
+        run: |
+          export ${{ matrix.env }} NSH_GPU_LEXER_REQUIRE_GPU=${{ matrix.require }}
+          [ -n "$NSH_GPU_LEXER_REQUIRE_GPU" ] || unset NSH_GPU_LEXER_REQUIRE_GPU
+          cargo test --release --features gpu --test gpu -- --nocapture
+
+  nsh:
+    name: nsh check + nsh test (examples/playground)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            examples/playground/target
+          key: nsh-${{ env.NSH_VERSION }}-${{ hashFiles('Cargo.toml', 'src/**') }}
+          restore-keys: nsh-${{ env.NSH_VERSION }}-
+      - name: GTK 4 (the Linux development host)
+        run: sudo apt-get update && sudo apt-get install -y libgtk-4-dev
+      - name: Install nsh ${{ env.NSH_VERSION }}
+        run: |
+          curl -fsSL https://nsh.dev/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - run: nsh --version
+      - name: nsh check (TSX type check against the crate's generated types)
+        working-directory: examples/playground
+        run: nsh check
+      - name: nsh test (headless: GpuLexer.parse, explicit Editor fallback, helpers)
+        working-directory: examples/playground
+        run: nsh test
+
+  bench:
+    name: CPU throughput
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: lscpu | head -20
+      - run: cargo bench --bench throughput | tee bench.md
+      - run: cat bench.md >> "$GITHUB_STEP_SUMMARY"
+
+  upstream-sync:
+    name: generated files match upstream
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: bash scripts/fetch-upstream.sh .upstream
+      - name: sync-upstream.mjs reproduces the committed model, shader and bundle
+        run: |
+          node scripts/sync-upstream.mjs .upstream/gpu-lexer .upstream/npm
+          git diff --exit-code
+      - name: fixtures match their recorded hashes
+        run: node scripts/fetch-fixtures.mjs
+      - name: golden.mjs reproduces the committed goldens
+        run: |
+          node scripts/golden.mjs .upstream/gpu-lexer
+          git diff --exit-code
